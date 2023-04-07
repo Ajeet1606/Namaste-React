@@ -1,0 +1,55 @@
+								CHAPTER 1 - INCEPTION
+
+Ques: 1. What is Emmet?
+
+Ans: Emmet is a plug in for many popular text editors which greatly improves HTML & CSS workflow.
+
+Ques: 2. Difference between a Library & a Framework?
+
+Ans: Both frameworks and libraries are code written by someone else that is used to help solve common problems.
+A library is like going to Ikea. You already have a home, but you need a bit of help with furniture. You don’t feel like making your own table from scratch. Ikea allows you to pick and choose different things to go in your home. You are in control.
+
+A framework, on the other hand, is like building a model home. You have a set of blueprints and a few limited choices when it comes to architecture and design. Ultimately, the contractor and blueprint are in control. And they will let you know when and where you can provide your input.
+
+The Technical Difference
+The technical difference between a framework and library lies in a term called inversion of control.
+
+When you use a library, you are in charge of the flow of the application. You are choosing when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides some places for you to plug in your code, but it calls the code you plugged in as needed.
+
+Ques: 3. What is CDN? Why we use it?
+Ans: A CDN improves efficiency by introducing intermediary servers between the client and the website server. These CDN servers manage some of the client-server communications. They decrease web traffic to the web server, reduce bandwidth consumption, and improve the user experience of your applications.
+
+Ques: 4. Why is React known as React?
+Ans: React is called "React" because of its core feature, which is its ability to "react" or respond dynamically to changes in data. React was originally created by Facebook in 2011 for use in their own web applications, and it was released as an open-source project in 2013. 
+In a traditional JavaScript application, you need to look at what data changed and imperatively make changes to the DOM to keep it up-to-date.
+React takes a different approach.
+
+When your component is first initialized, the render method is called, generating a lightweight representation of your view. From that representation, a string of markup is produced, and injected into the document. When your data changes, the render method is called again. In order to perform updates as efficiently as possible, we diff the return value from the previous call to render with the new one, and generate a minimal set of changes to be applied to the DOM.
+
+Ques: 5. What is cross origin in script tag?
+Ans: The crossorigin attribute sets the mode of the request to an HTTP CORS Request. Web pages often make requests to load resources on other servers. Here is where CORS comes in. A cross-origin request is a request for a resource (e.g. style sheets, iframes, images, fonts, or scripts) from another domain.
+
+Ques: 6. Difference between React & ReactDOM?
+Ans: React: React is a javascript library, designed for building better user interfaces.
+
+React-DOM: React-DOM is a complimentary library to React which glues React to the browser DOM
+
+In a nutshell, Whenever we use component, classes, elements, etc. We’re using React and whenever we use methods like render() or findDOMNode() we’re using React-DOM.
+
+
+Ques: 7. Difference between React.development.js and React.production.js files via CDN?
+Ans: The development build is used - as the name suggests - for development reasons. You have Source Maps, debugging and often times hot reloading ability in those builds. The production build, on the other hand, runs in production mode which means this is the code running on your client's machine.
+
+Ques: 8: What is async and defer in script?
+Ans: When browser reads the web page, there are 2 things happening: 
+1. Parsing the HTML
+2. Loading & Executing Scripts.
+There are 3 ways to define scripts in HTML file.
+1. Direct way: <script scr=""/>
+Browser starts parsing HTML and when it reaches the scripts, it stopps, first it loads script & executes them then only further paring is done.
+2. Using async: <script async src=""/>
+Script is loaded along with parsing but then parsing stopps for script execution, when it's completed then parsing resumes.
+3. Using defer: <script defer src=""/>
+Script is loaded along with parsing and when parsing is completed then script is executed.
+
+async doesn't maintain any order of script execution where as defer does.

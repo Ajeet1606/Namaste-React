@@ -1,0 +1,157 @@
+//Store all hard coded data.
+
+export const IMG_CDN_URL =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+
+export const cards = [
+  {
+    data: {
+      type: "F",
+      id: "224920",
+      name: "Chandralok Kachouri",
+      uuid: "08c5f3d4-4e02-4829-aac1-a47ca48dce73",
+      city: "50",
+      area: "Rambagh",
+      cloudinaryImageId: "qbo11lh7l43xpkd7wqts",
+      cuisines: ["Snacks", "South Indian", "Chinese", "Fast Food", "Pizzas"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "125694",
+      name: "M.F Chicken Point",
+      uuid: "caa88146-8680-4f54-a3d8-8241f4fe3b9b",
+      city: "50",
+      area: "Rambagh",
+      cloudinaryImageId: "lyfn2vudb9eut2pjmy7c",
+      cuisines: ["North Indian", "Biryani", "Afghani"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "127614",
+      name: "Statesman House",
+      uuid: "ce6a95c5-7f06-494f-8a27-c6007610ba9f",
+      city: "50",
+      area: "Rambagh",
+      totalRatingsString: "5000+ ratings",
+      cloudinaryImageId: "ef79543203bfeabd03044b3af9e205df",
+      cuisines: ["North Indian", "Chinese"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "124580",
+      name: "Samira Restaurant",
+      uuid: "0e9adbc7-2512-4655-9d31-02701ce297b8",
+      city: "50",
+      area: "Leader Road",
+      totalRatingsString: "5000+ ratings",
+      cloudinaryImageId: "e3mhvhwxlxjxl37kq1x3",
+      cuisines: ["Indian", "Mughlai", "Biryani", "North Indian"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "153693",
+      name: "Chat-Pataa's Eggeteria",
+      uuid: "f155612f-bedc-4f7f-8a45-7df132439b1b",
+      city: "50",
+      area: "Rambagh",
+      totalRatingsString: "500+ ratings",
+      cloudinaryImageId: "y5di27ne45qwv0xiklzd",
+      cuisines: ["Pizzas", "Burgers"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "80719",
+      name: "Jaiswal Dosa Corner",
+      uuid: "6ae2ab6f-f8e8-4d4e-8f02-7fa1ed1a05dc",
+      city: "50",
+      area: "George Town",
+      totalRatingsString: "10000+ ratings",
+      cloudinaryImageId: "zhh9cj8n2eio7ottsq7e",
+      cuisines: ["South Indian", "Fast Food", "Burgers", "Desserts"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "415132",
+      name: "Kake Di Hatti",
+      uuid: "5f5ae373-e690-4cda-aa04-d12bb20b8107",
+      city: "50",
+      area: "Civil Lines",
+      totalRatingsString: "100+ ratings",
+      cloudinaryImageId: "ogikys4rbe2vmh7akdxd",
+      cuisines: ["Indian"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "380152",
+      name: "The Quick Curry",
+      uuid: "6e5ce79b-f5a6-4991-abfc-3d9825628dc7",
+      city: "50",
+      area: "Leader Road",
+      totalRatingsString: "1000+ ratings",
+      cloudinaryImageId: "aq5uredkyfrmct6a99cv",
+      cuisines: ["Indian", "Thalis", "North Indian"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "320370",
+      name: "ANWAR KITCHEN",
+      uuid: "281efa88-82df-4e63-9c98-b0c749ec6a25",
+      city: "50",
+      area: "Rambagh",
+      totalRatingsString: "100+ ratings",
+      cloudinaryImageId: "in0bpskhebicvdk5dti7",
+      cuisines: ["North Indian", "Biryani"],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "401046",
+      name: "Moti Mahal Deluxe & MM Cafe",
+      uuid: "07267043-cb88-4dc5-80bd-c0a884f27563",
+      city: "50",
+      area: "Civil Lines",
+      totalRatingsString: "1000+ ratings",
+      cloudinaryImageId: "mdtreom99b0yo6aiophw",
+      cuisines: [
+        "Indian",
+        "Biryani",
+        "North Indian",
+        "Punjabi",
+        "Desserts",
+        "Beverages",
+        "Pizzas",
+        "Snacks",
+      ],
+    },
+  },
+  {
+    data: {
+      type: "F",
+      id: "238136",
+      name: "La Pino'z Pizza",
+      uuid: "a8a12e43-defa-4aa6-830a-eb6841ee4562",
+      city: "50",
+      area: "Civil Lines",
+      totalRatingsString: "5000+ ratings",
+      cloudinaryImageId: "a3poc70wqkajnw3zxpsl",
+      cuisines: ["Italian", "Pizzas"],
+    },
+  },
+];

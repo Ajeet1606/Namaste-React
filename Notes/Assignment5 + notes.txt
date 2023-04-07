@@ -1,0 +1,89 @@
+				   MY	NOTES
+
+- JSX code can only have one parent so to wrap our all components, we use React.Fragment.
+<React.Fragment>
+	<Header/>
+	<Body/>
+	<Footer/>
+</React.Fragment>
+
+To make it more cleaner we can write only empty tags also.
+<>
+	<Header/>
+	<Body/>
+	<Footer/>
+</>
+
+- When we modify our whole UI according to different situations dynamically it is called Config driven UI.
+
+
+
+					                  ---------------------ASSIGNMENT--------------------
+
+Ques1:  Is JSX mandatory for React?
+Ans: JSX is not mandatory but it's the preferred way to React code, it provides an HTML like syntax to write Javascript which makes it easier to write and understand. On the other hand we can write plain Javascript then we've to generate those HTML using JS which is quite complex and error prone.
+
+Ques2: Is ES6 mandatory for React?
+Ans: No, ES6 (ECMA Script 2015) birngs so many new features to JS like classes, template literals, arrow functions, destructuring and modules. Using it in react makes your code more concise, easier to read and maintain than compared to normal(in case that code can be written without ES6). 
+Many important concepets of React like useState rely on ES6 itself.
+
+Ques3: {TitleComponent} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>} in JSX?
+Ans: All 3 are different ways to render a React component depending on the user preference and personal needs.
+{TitleComponent}: Calling the component as react variable.
+{<TitleComponent/>}: Calling in a self closing tag like html <img/> used when no props are passed.
+{<TitleComponent><TitleComponent/>}: Render using an opening and a closing tag, we can easily pass props, include some child components also.
+
+Ques4: How can I write comments in JSX?
+Ans: {/* This is a comment */}
+
+
+Ques5: What is <React.Fragment></React.Fragment> and <></> ?
+Ans: In JSX, any component can return only one block of code, so we need to wrap our code in a parent element.
+<div>
+	<img/>
+	<img/>
+<div/>
+But using the div tag to wrap our code, creates an actual div in our DOM, which is of no use. So, in React we use React.Fragment tag to wrap which makes no extra element in DOM.
+Since React 16, we can use it's shorthand version <></> to do the same.
+
+Ques6: What is Virtual DOM?
+Ans: DOM: Document Object model is a hierarchical representation of HTML elements on a web page.
+When something changes in our code, DOM is updated to reflect it on web page, updating DOM directly is explensive and slow hence React uses the concept of Virtual DOM, which a virtual lightweight representation of actual DOM. When we change something:
+React creates a new VDOM,
+Compares VDOM to old VDOM,
+Finds Changes, updates only the changed element in DOM. This process is called Reconciliation and done using Diffing algorithm. React fiber is new reconcilliation engine in React 16.
+
+
+Ques7: What is Reconciliation in React?
+Ans: When we update a state or props, React
+- Create updates the virtual DOM,
+- Compares new and old VDOM,
+- Finds the changes,
+- Updates the DOM,
+this process is Reconcilliation done using a Difing Algo.
+Few ways to improve Reconcilliation,
+- Provide Keys to elements, so when a similar kind of new element comes, it doesn't confuse and differentiates both.
+- ShouldComponentUpdate - A lifecycle method provided to you, you can tell which component would be re-rendered and which not.
+
+
+Ques8: What is React Fiber?
+Ans: Reimplementation of reconciliation algortihm, introduced in React 16, supports Asynchronous rendering, incremental updates, it's a unit of work. Earlier reconci. algo was using recursive approach, which could block the main thread especially in complex codes. It makes reconci. more efficient and fast.
+Async Rendering: When a task is being executed, React can stop this and start executing some other component complete that and come back and resume it.
+Incremental Updates: Update only the changed part of DOM tree instead of rerendering the whole tree.
+
+
+Ques9: Why we need keys in React? When do we need keys in React?
+Ans: Keys are used to give a unique identity to component childs, when react re-renders the component, it needs to know which element got changes/deleted/added. Using keys makes it easier to identify that. If a key is already seen, it doesn't re renders that, it a new key is found, it adds it to DOM to be re rendered. When keys match, attributes/properties of element are compared.
+Keys must be unique among it's siblings not the whole tree.
+
+Ques10: Can we use index as keys in React?
+Ans: Technically Yes but not recommended, using index of an array element as keys can lead to various problems if the array values change.
+
+Ques11: What is props in React? Ways to paas props?
+Ans: Props (properties) are inputs to a component which it takes from it's parent component. It allows to customize it's behaviour and appearance.
+
+Ques12: What is a Config Driven UI ?
+Ans: Enables developers to create and manage UI using congiguration data instead of hardcoding that.
+Benefits: 
+- Flexibility: As configuration data is separated from codebase, we can easily modify it without touching code base.
+- Consistency: UI components can be reused throughout the application.

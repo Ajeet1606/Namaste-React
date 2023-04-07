@@ -1,0 +1,38 @@
+										NOTES
+
+Reading List{
+	- React File Structure
+	-
+}
+
+- Ways to export a component:
+	- Named Export: add export keyword in front of component definition, import will -> import {Name} from "file path"
+	- Default Export: at the end of compo file: export default name: import -> import Name from "file path" (only one compo can be exported by defualt)
+	- If we have exported multiple compos from a file, we can import them like: import * as XYZ from "file path" and later use it as: XYZ.Name.
+
+
+---------------------------------------------------------	ASSIGNMENT --------------------------------------
+
+Ques1: What is the difference between Named Export, Default export and * as export?
+Ans: Answered in Notes above.
+
+Ques2: What is the importance of config.js file?
+Ans: Few reasons for it's importance.
+-> Centralized Configuration: It stores all the configuration data at one place which makes it easy to access and modify them when needed.
+-> Separation of Concerns: Separating config data from the code makes it easier to maintain the code, developers can fully focus on building the product by using already available data instead of hard coding them.
+-> Security: Adding the API keys and other sensitive information in config file helps in protecting them from being exposed in code base.
+
+Ques3: What are React Hooks?
+Ans: Are functions, introduced in react 16.8, allows us to add state and lifecycle methods to functional components, earlier these were available only for class components.
+Popular hooks:
+-> useState: Allows functional component to use state, takes an inital value and returns an array of current value and a function to update the value.
+-> useEffect: Allows functional component to use lifecycle methods such as componentDidMount, componentDidUpdate. takes a function as a parameter and executes it after every render.
+-> useContext: helps to consume context element that were defined by the parent element using React.useContext API.
+-> useReducer
+-> useCallback.
+
+
+Ques4: Why do we need a useState Hook?
+Ans: Allows functional components to use state, earlier they were state less. Why?
+1. Simplicity: When used with functional compo, makes it easier to understand and clear.
+2. Performance: Reduces un-necessary re renders of compo.

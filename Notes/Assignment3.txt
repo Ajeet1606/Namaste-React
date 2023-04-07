@@ -1,0 +1,71 @@
+										ASSIGNMENT - 2: IGNITING OUR APP
+
+
+Ques 1: What is NPM?
+Ans: It's a package manager for JavaScript, it's defalt p. manager for JS runtime Nodejs. It consists of 2 parts:
+-> A CLI tool for publishing and downloading packages.
+-> An online repo that hosts JS packages.
+
+Soruce: https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/
+
+
+Ques 2: What is Parcel/Webpack? It's need?
+Ans: These are bundlers mostly used for JS/TS that helps to minify, clean and make your code compact. Normally without using bundlers, in loading a web page, multiple files are transfered resulting in huge processing time but bundlers substantially reduce the time it takes and removes the unused code/ comments without modifying the functionality of code.
+
+Ques 3: What is .parcel-cache?
+Ans: Cache folder or .parcel-cache stores the information about the project when parcel builds it so that next time it don't have to parse and process everything from scratch. It's the reason behind Parcel being so fast in development.
+
+Ques 4: Difference between dependencies and devdependencies?
+Ans: Dependency is what your project needs to run like a library which provides some functionality that you call from your code. They are installed transitively. (A depends on B, we install A then B will also be installed)
+
+DevDependency is what we need during develpment or testing like compilers, test frameworks or documentation generators.
+
+Ques 5: What is Tree Shaking?
+Ans: When we import/export modules in JS, there are some unused code floating around. Tree Shaking or Dead Code Elimination means that unused code will not be included in the bundle during build process. Bundlers like parcel/webpack do this.
+
+Ques 6: Hot Module Replacement?
+Ans: It allows developers to update code changes in the running application without requiring a full browser refresh. It speeds up the development as the code changes are reflected immediately. It simply detects the changes in source code and injects the updated code into the application.
+
+
+Ques 7: What is NPX?
+Ans: It stands for Node Package eXecute. It's a node package runner which allows developers to run the JS packages available on NPM registry w/o even installing them.
+
+Ques 8: List down some super powers of Parcel?
+Ans:
+-> Builtin Support for various Technologies: It supports JS, TS, React, Vue, CSS.
+-> Universal Binding: It supports binding for both frontend & backend technologies.
+-> Hot Module Reloading: Update code changes in the running application without need of refreshing the broweser.
+-> Tree shaking: Exclude the unused code from the bundle during the build process.
+-> Zero Configuration: Needs no configuration in setting up hence super fast to start with.
+-> Speed: Super fast due to it's parallel processing and caching.
+
+Ques 9: What is .git-ignore?
+Ans: It is a file that tells Git which file/directory to ignore while tracking changes in a repository. We add the files here, which can be dynamically regenrated.
+
+Ques 10: Difference betweent package.json and package-lock.json?
+Ans: Package.json contains the metadata about the project and some functional dependencies which are required to run the project.
+Package-lock.json is created for locking the dependency with the locked version.
+
+Ques 11: Why should we not modify package-lock.json?
+Ans: - Can cause issue with consistency and integrity of your project's dependencies.
+- Can cause problems when collaborating with other devs as it can create difference in dependencies.
+- If you need to update, use the proper npm command.
+
+Ques 12: What are node-modules?
+Ans: It's a directory which is created when you install node.js packages in your project using package managers like NPM or YARN. It contains all the dependencies that your project needs to run.
+Don't push it to git: - Huge size, Redundant: can be generated using package-lock.json.
+
+Ques 13: What is dist folder in parcel?
+Ans: A directory which contains the final output of the build process, when you run parcel-build it takes all the files of your source code like HTML, CSS, JS and bundles them together to build a single package which can be deployed to a server or used in a production environment.
+Add it to git-igonre as it can be re-generated using parcel-build.
+
+Ques 14: Browserlists?
+Ans: It is a configuration file that allows devs to specify which browser and version their code should support.
+
+Ques 15: Bundlers?
+Ans: Bundlers are the tools which are used to make packages of our code and optimze it for deployment. They allow us to write modular code using modules and dependencies and bundle all of the code into a single package for production use. e.g: webpack, parcel.
+
+Ques 16: Caret ^ and Tilde ~
+Ans: Dependency versions are written in semver(semantic version) form, which consists of 3 parts, major, minor, patch. {1.2.3: major.minor.patch}.
+When we use ^ in front of version, it takes the latest minor version of given major version.
+When we use ~ in front of version, it takes the latest patch of given minor version.

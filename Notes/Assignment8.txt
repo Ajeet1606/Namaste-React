@@ -1,0 +1,57 @@
+									EXPLORING THE WORLD
+
+Ques1: What are Microservices?
+Ans: Microservices is a Software Architecture that structures an application as a combination of small, independent services that communicate with other through APIs. Promotes Agility, Scalability and Resilience so each service can be build, updated and deployed without affecting the rest of the system.
+
+
+Ques2: What is a Monolith Architecture?
+Ans: Monolith architecuture is a traditional software design approach, which combines the whole software into a single unit, Each and every service like: User Interface, Business logic, frontend, backend, database, APIs all are processed into a single container.
+Any small change in any service leads to the whole software to be rebuilt, tested and deployed. Still widely used in small scale companies where Microservices isn't much evident.
+
+
+Ques3: What is the difference between Monolith and Microservice?
+Ans: Main different points:
+(i) Scalability: Monolithic Achitectures can't be scaled very much as a small change in any particular service leads to the whole application rebuilt, tested and redeployed. Where as in Microservice, all the services are independent of each other so changing anyone doesn't affect the rest of the system so scaling in easier.
+
+(ii) Resilience: In Monolithic Architecture, if one service fails, the application may go down but same in not to be necessarily true in case of Microservices as each service is independent of other.
+
+(iii)Agility: Monolithic can be too hard to modify and update as the size of application grows whereas Microservices are easier and agile to change.
+
+
+Ques4: Need of useEffect hook?
+Ans: Used to perform side effects, which affects the world outside the component. e.g. fetching the data from and API, updating the browser's title(a/c to the component name/current page openend), websocket.
+It takes two arguments: callback function with side effects, which tell what to do and an array of depenedencies, when changed, callback is called.
+
+
+Ques5: What is Optional Chaining?
+Ans: It's the ability to check whether a property of a JS object exists before going to access that. It saves us from getting a type error. operator => '?.'
+
+
+Ques6: What is Shimmer UI?
+Ans: When the website is loading, it's used to provide visual feedback to the users. It's a technique used to simulate the loading of the content by showing placeholders and animations which mimics the actual content to be loaded.
+
+
+Ques7: Conditional Rendering?
+Ans: Technique that allows us to render different content/component based on certain conditions. Commonly used in showing/hiding a data based on user interactions.
+
+Ex: function Greetings(props){
+	const isLoggedin = props.isLoggedIn;
+	if(isLoggedin) return <h1>Welcome back<h1/>
+	else	return <h1>Login pls<h1/>
+    }
+
+ReactDOM.render(
+	<Greetings "true"/>, 
+	document.getElementById('root')
+);
+
+
+Ques8: What is CORS?
+Ans: Cross Origin Resource Sharing, is security feature implemented by web browsers that restricts web browsers to make request to a different domain than the one that served the page. It's a mechanism that allows servers to specify who can access their resources. Without CORS web pages would be able to access any resource on any domain which is risky.
+
+Ques9: Async and await?
+Ans: These are the keywords used for asynchronous programming. This is useful when performing a time consuming operations like reading and writing files which takes a long time, it would be inefficient to bolck the program's execution until the operation completes.
+Async & await work together, async defines a function that can be executed asynchronously, await keyword is to pause the function execution until the async operation completes. Allowing other tasks to executed in meantime.
+
+Ques10: What is the use of `const json = await data.json();
+Ans: Used to extract and parse JSON data from response object returned by an API call.
