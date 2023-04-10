@@ -27,3 +27,26 @@ NESTED ROUTING:
 Dynamic Segments: Routing
 
 -> Used for random routes when they can be variable.
+
+
+	------------------------------------------  ASSIGNMENT ----------------------------------------------
+
+Ques1: What are various ways to add images into our App? Explain with code examples?
+Ans:	-> Use url in img tag
+	-> Store in your app: -> directly put the path in src or import the path then use as variable.
+
+
+Ques2: What would happen if we do console.log(useState())?
+Ans: useState returns an array of a variable with it's inital value and a function to modify it.
+
+
+Ques3: How will useEffect behave if we don't add a dependency array ?
+Ans: Dependency array defines the values on which useEffect callback function depends, it there no array, it'll be free and will be called after each render. So, empty array and no array are two different things here.
+
+
+Ques4: SPA
+Ans: Single Page application is a web application that loads a single HTML page and dynamically updates the elements without requireing the full page relaod.
+
+Ques5: Client Side & Server Side Routing?
+Ans: 	Client: Routing is handled totally on client side, fast, SPA built on it.
+	Server: Routing is handled on server side code, on demand, server responds to a html page.

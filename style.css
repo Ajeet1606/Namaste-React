@@ -4,13 +4,20 @@
     display: none;
 }
 
+body{
+    margin: 0;
+}
+
+
 /* ----------------------------------Header --------------------------------- */
 .header{
     display: flex;
     justify-content: space-between;
-    margin: 10px;
-    padding: 5px;
-    border-radius: 50px;
+    padding: 13px;
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo{
@@ -41,6 +48,7 @@ img{
     font-size: large;
     border: 2px solid black;
     border-radius: 4px;
+    font-family: Arvo;
 }
 
 .nav-items{
@@ -62,6 +70,7 @@ img{
     font-family: Arvo;
     padding: 10px;
     font-size: large;
+    /* color: black; */
 }
 
 .authenticate{
@@ -71,8 +80,7 @@ img{
 
 .authenticate > button{
     height: 35px;
-    /* width: 70px; */
-    background-color: white;
+    background-color: inherit;
     border-radius: 4px;
     font-family: Arvo;
     font-size: large;
@@ -98,6 +106,7 @@ img{
 /* ----------------------------- Restaurants lists --------------------- */
 
 .restaurants-lists{
+    /* padding-top: 60px; */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -135,3 +144,77 @@ img{
     border-radius: 5px;
 }
 
+/* -----------------------------------  Resaturant Menu ---------------------------------- */
+
+.parent-off-all{
+    width: 100%;
+}
+
+/* Centering everything */
+.restaurant-information, .offers, .veg-non-veg, .cuisines-catagories{
+    width: 60%;
+    margin: 0px auto;
+    font-family: Arvo;
+}
+
+hr{
+    width: 60%;
+}
+
+.restaurant-information{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+}
+
+
+.personal-details > h2{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.personal-details > h5{
+    font-weight: normal;
+}
+
+
+.rating-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-details > span{
+    border: 1px solid black;
+    margin: 2px 0;
+    text-align: center;
+    /* width: fit-content; */
+}
+
+.offers{
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.offers > div{
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.offers > div > span{
+    font-size: 12px;
+}
+
+.veg-non-veg > h4{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.cuisines-catagories > div{
+    text-align: center;
+}

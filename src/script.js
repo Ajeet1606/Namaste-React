@@ -9,7 +9,7 @@ import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
-
+import ProfileClass from "./components/ProfileClass";
 
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
@@ -35,8 +35,14 @@ const appRouter = createBrowserRouter([
         element: <Body/>
       },
       {
-        path: "/about",
-        element: <About/>
+        path: "/about",       //child path can be added but name it directly: path: 'profile' not path: '/profile' by latter one it will be localhost:1234/profile.
+        element: <About/>,
+        children: [
+          {
+            path: "profile",
+            element: <ProfileClass/>
+          }
+        ]
       },
       {
         path: "/contact",

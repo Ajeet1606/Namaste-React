@@ -1,0 +1,28 @@
+Read List:
+-> Read about different routers in react-router-dom.
+-> read about constructor and super(props) in classes.
+-> React lifecycle diagram.
+-> componentDidMount can be async but useEffect not why?		
+
+							
+NOTES
+
+
+-> We can create childrens of children also in react route path. Apparently we've to create outlet in the parent body also when rendering.
+
+CLASS BASED COMPONENTS:
+-> render method is mandatory.
+-> we've a method, componentDidMount at the place of useEffect, so the order of execution is: contructor -> render -> componentDidMount.
+-> componentDidMount and useEffect in functional compo, are best place to make API calls.
+
+
+
+
+									ASSIGNMENT
+
+=> Why we use super(props) in constructor of class component?
+It allows to us to access 'this' keyword in constructor. It calls the constructor of parent class and assigns the props to this pointer.
+
+=> Why can't we have the callback function of useEffect async?
+Using async function in useEffect is an error coz it return a promise and useEffect doesn't expect a callback fun to return promise, it should return nothing or a function. Still we can use async functions by defining a new inside/outside useEffect.
+

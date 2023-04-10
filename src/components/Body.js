@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 
-let global_restaurant_list;
 
 export function filterRestaurants(searchTxt) {
   if (searchTxt === "") setFilteredRestaurants(global_restaurant_list);
@@ -31,16 +30,13 @@ const Body = () => {
     );
     const json = await data.json();
 
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards) || [];
+    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards || []);
   }
 
-  console.log("render");
-  console.log(allRestaurants);
-  console.log(filteredRestaurants);
 
 
-  return (allRestaurants?.length === 0 || filteredRestaurants?.length === 0) ? (
+  return (allRestaurants?.length === 0 || filteredRestaurants?.length == 0) ? (
     <ShimmerUI />
   ) : (
     <>
