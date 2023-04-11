@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Ubuntu+Condensed&display=swap');
 
-::-webkit-scrollbar {
-    display: none;
-}
 
 body{
     margin: 0;
@@ -46,7 +43,7 @@ img{
     width: 300px;
     text-align: center;
     font-size: large;
-    border: 2px solid black;
+    border: 2px solid #818080;
     border-radius: 4px;
     font-family: Arvo;
 }
@@ -115,8 +112,10 @@ img{
 .restaurant-card{
     width: 250px;
     margin: 10px;
-    padding: 5px;
+    padding: 10px 5px;
     transition: all 0.3s ease-in-out;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .restaurant-card:hover{
@@ -133,9 +132,20 @@ img{
     font-weight: normal;
 }
 
-.restaurant-card > h5{
-    font-family: 'Ubuntu Condensed';
+.not-getting-any-proper-name > div > h5{
+    font-family: sans-serif;
     font-weight: normal;
+    color: #484848;
+}
+
+.not-getting-any-proper-name > div{
+    padding: 0px 3px;
+}
+
+.not-getting-any-proper-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .restaurant-logo{
@@ -176,19 +186,30 @@ hr{
 
 .personal-details > h5{
     font-weight: normal;
+    color: #8d8d8d;
 }
 
 
 .rating-details{
     display: flex;
     flex-direction: column;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .rating-details > span{
-    border: 1px solid black;
-    margin: 2px 0;
     text-align: center;
-    /* width: fit-content; */
+    border: 1px solid #d0d0d0;
+    padding: 5px 2px;
+}
+
+.star-rating, .veg-non-veg > h4 > i{
+    color: green;
+}
+
+
+.review-count{
+    color: #8d8d8d;
+    font-size: small;
 }
 
 .offers{
@@ -198,23 +219,98 @@ hr{
     white-space: nowrap;
 }
 
+.offers::-webkit-scrollbar {
+    display: none;
+}
+
+
 .offers > div{
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    border: 1px solid #d0d0d0;
 }
 
 .offers > div > span{
     font-size: 12px;
+    color: #8d8d8d;
 }
 
 .veg-non-veg > h4{
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .cuisines-catagories > div{
+    margin: 5px 0;
+    padding: 5px 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* -------------------------------  Cuisines category: Item card component -------------------------- */
+
+
+.head-category{
+    display: flex;
+    cursor: pointer;
+}
+
+.head-category > h3{
     text-align: center;
+    width: 90%;
+}
+
+.head-category > p{
+    width: 10%;
+}
+
+.meal-details-under-body-category{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.text-details-under-body-category > h4{
+    margin-bottom: 8px;
+}
+
+.text-details-under-body-category > h5, p{
+    margin: 2px 0;
+    font-weight: normal;
+}
+
+.text-details-under-body-category > h5{
+    font-size: 13px;
+    color: #404040;
+}
+
+.text-details-under-body-category > p{
+    font-size: 12px;
+    color: #8d8d8d;
+}
+
+.text-details-under-body-category, .img-detail-under-body-category{
+    padding: 0 10px;
+}
+
+.img-detail-under-body-category{
+    width: 120px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.img-detail-under-body-category > img{
+    width: 120px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.liner-under-body-category > hr{
+    width: 95%;
 }
