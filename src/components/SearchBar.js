@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { filterRestaurants } from "./Body";
+import { filterRestaurants } from "../utils/utils";
 
 
 function SearchBar() {

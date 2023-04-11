@@ -1,45 +1,12 @@
-import { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ItemCardComponent from "./ItemCardComponent";
 
 const RestaurantMenu = () => {
   
-  const restaurantFormat = {
-      name: "",
-      cuisines : [],
-      areaname: "",
-      deliverymsg: "",
-      avgrating: "",
-      totalratings: "",
-      itemCards: []
-  }
-
-  const [restaurant, setrestaurant] = useState(restaurantFormat);
-
-  useEffect(() => {
-    getRestaurantDetails();
-  }, []);
-
-  async function getRestaurantDetails() {
-    const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.4358011&lng=81.846311&restaurantId=" + id + "&submitAction=ENTER");
-    const json = await data.json();
-
-    const card = json?.data?.cards[0]?.card?.card?.info;
-    const cuisineDetails = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-    // console.warn(cuisineDetails[1]?.card?.card?.itemCards);
-    setrestaurant({
-        name: card?.name,
-        cuisines: card?.cuisines,
-        areaname: card?.areaName,
-        deliverymsg: card?.feeDetails?.message,
-        avgrating: card?.avgRatingString,
-        totalratings: card?.totalRatingsString,
-        itemCards: cuisineDetails
-    })
-    // console.warn(restaurant.itemCards[1]?.card?.card?.itemCards);
-
-  }
   const {id} = useParams();
+  const restaurant = useRestaurantMenu(id);
 
   return (
     <>
@@ -101,11 +68,6 @@ const RestaurantMenu = () => {
                 }
               })
             }
-            {/* <div>Breakfast (snacks) (17)</div>
-            <div>Navratri Specials (8)</div>
-            <div>Laddoos (assorted) (7)</div>
-            <div>Desi Ghee Sweets (10)</div>
-            <div>Khoya And Mawa Sweets (9)</div> */}
         </div>
       </div>
     </>
