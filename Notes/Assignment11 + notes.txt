@@ -1,0 +1,11 @@
+Notes:
+
+
+-> Parecel is a bundler, makes a single file for all of the code in our project.
+-> In large scale applications, one single file can make the network very slow hence we break the the code into multiple chunks (process called: Chunking, Code splitting, dynamic building, lazy loading, on demand loading) according to the intent of that.
+-> Now, every chunk is loaded into the browser only when it's needed, on demand loading.
+Such elements are imprted using lazy: 
+const myCompoenent = lazy(() => import(path));
+-> So, when needed in browser, if it takes time to load and react wants to render it instantly and it's not loaded, react suspends the rendering and shows an error, to prevent this, to make react wait for loading, we SUSPENSE tag while making the route for our component. <Suspense> <MyComponent/> <Suspense/>
+-> In this case, to avoid showing blank page while loading, we show shimmer UI using fallback attribute of suspense.
+<Suspense fallback = {<Shimmer/>}> <MyComponent/> <Suspense/>

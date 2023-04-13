@@ -1,0 +1,21 @@
+Reading list:
+Pure css
+Inline css 
+SCSS vs SASS
+Styled components
+Component libraries: Tailwind, MUI, Chakra UI, Base UI, Ant design, Bootstrap.
+
+Read all pros and cons.
+
+
+Tailwind Pros:
+- CSS on the go,
+- reusability,
+- less bundle size,
+- flexible ui, less restriction.
+
+
+To-do:
+- install tailwind pkg.
+- read about the config file of tailwind.
+- instal tailwind css intellisense extension
