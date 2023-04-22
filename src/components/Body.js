@@ -10,7 +10,7 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
 
   useEffect(() => {
-    getRestaurants();
+    getRestaurants();    
   }, []);
 
   async function getRestaurants() {
@@ -47,7 +47,7 @@ const Body = () => {
           onKeyDown={handleKeyPress}
         />
       </div> */}
-      <div className="restaurants-lists">
+      <div className="flex justify-around flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />

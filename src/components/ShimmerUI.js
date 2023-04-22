@@ -9,7 +9,7 @@ function ShimmerUI() {
 
   return (
     <>
-      <div className='restaurants-lists'>
+      <div className='flex justify-around flex-wrap'>
         {temp()}
         {Array(15).fill("").map((e, index) => (
           <ShimmerUICard key={index}/> 

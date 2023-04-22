@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Average&display=swap');
 
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Arvo&family=Ubuntu+Condensed&display=swap'); */
+
+/* 
 body{
     margin: 0;
-}
+} */
 
 
 /* ----------------------------------Header --------------------------------- */
-.header{
+/* .header{
     display: flex;
     justify-content: space-between;
     padding: 13px;
@@ -15,18 +24,17 @@ body{
     top: 0;
     z-index: 1; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
-.logo{
+/* .logo{
     width: 50px;
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
     display: flex;
-    justify-content: center; /* center horizontally */
-    /* align-items: center; center vertically */
-}
-
+    justify-content: center; 
+} */
+/* 
 img{
     max-width: 100%;
     max-height: 100%;
@@ -67,7 +75,6 @@ img{
     font-family: Arvo;
     padding: 10px;
     font-size: large;
-    /* color: black; */
 }
 
 .authenticate{
@@ -92,18 +99,17 @@ img{
 
 /* ---------------------------- Search Bar ------------------------ */
 
-
+/* 
 .search-container{
     display: flex;
     justify-content: space-evenly;
-}
+} */
 
 
 
 /* ----------------------------- Restaurants lists --------------------- */
-
+/* 
 .restaurants-lists{
-    /* padding-top: 60px; */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -152,21 +158,21 @@ img{
     width: 300px;
     height: 157.48px;
     border-radius: 5px;
-}
+} */ 
 
 /* -----------------------------------  Resaturant Menu ---------------------------------- */
-
+/* 
 .parent-off-all{
     width: 100%;
-}
+} */
 
 /* Centering everything */
-.restaurant-information, .offers, .veg-non-veg, .cuisines-catagories{
+/* .restaurant-information, .offers, .veg-non-veg, .cuisines-catagories{
     width: 60%;
     margin: 0px auto;
     font-family: Arvo;
-}
-
+} */
+/* 
 hr{
     width: 60%;
 }
@@ -219,12 +225,13 @@ hr{
     white-space: nowrap;
 }
 
-.offers::-webkit-scrollbar {
+*/
+.scrollbar-none::-webkit-scrollbar {
     display: none;
 }
 
 
-.offers > div{
+.divs-inside-offers{
     border-radius: 5px;
     margin: 5px;
     padding: 10px;
@@ -232,6 +239,7 @@ hr{
     cursor: pointer;
     border: 1px solid #d0d0d0;
 }
+/*
 
 .offers > div > span{
     font-size: 12px;
@@ -249,11 +257,11 @@ hr{
     padding: 5px 0;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
-
+ */
 
 /* -------------------------------  Cuisines category: Item card component -------------------------- */
 
-
+/* 
 .head-category{
     display: flex;
     cursor: pointer;
@@ -323,4 +331,4 @@ hr{
 
 .liner-under-body-category > hr{
     width: 95%;
-}
+} */
