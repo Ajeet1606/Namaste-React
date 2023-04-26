@@ -14,7 +14,7 @@ const RestaurantCard = ({
   // console.warn(path);
   return (
     <Link to={path}>
-      <div className="w-[250px] m-[10px] px-[10px] py-[5px] rounded-[5px] transition duration-300 ease-in-out hover:scale-110 shadow-md">
+      <div className="w-[250px] m-2 px-[10px] py-[5px] rounded-[5px] transition duration-300 ease-in-out hover:scale-110 shadow-md">
         <img
           className="w-[300px] h-[150px] rounded-[5px]"
           src={IMG_CDN_URL + cloudinaryImageId}

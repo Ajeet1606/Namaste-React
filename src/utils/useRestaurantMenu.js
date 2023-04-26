@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { FETCH_MENU_URL_FIRST_PART, FETCH_MENU_URL_SECOND_PART } from "../components/Config";
+
+
 const useRestaurantMenu = (id) => {
    
     const restaurantFormat = {
         name: "",
+        logo: "",
+        id: "",
         cuisines : [],
         areaname: "",
         deliverymsg: "",
@@ -28,6 +32,8 @@ const useRestaurantMenu = (id) => {
         
         setrestaurant({
             name: card?.name,
+            logo: card?.cloudinaryImageId,
+            id: card?.id,
             cuisines: card?.cuisines,
             areaname: card?.areaName,
             deliverymsg: card?.feeDetails?.message,

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+
 
 function filterRestaurants(searchTxt, allRestaurants) {
   if (searchTxt === "") return allRestaurants;
@@ -11,11 +14,13 @@ function filterRestaurants(searchTxt, allRestaurants) {
   return filteredData;
 }
 
+
 const Header = () => {
 
   const [loggedIn, setLoggedIn] = useState("false");
   const [btnText, setBtnText] = useState("Login")
 
+  // const {user} = useContext(UserContext);
 
   function authenticate(){
     if(loggedIn){
@@ -28,8 +33,12 @@ const Header = () => {
     
   }
 
+  // Subscribe to the redux store
+  const cartItems = useSelector(store => store.cart.items);
+  
+
   return (
-    <div className="flex justify-between p-[13px] shadow-md mb-1">
+    <div className="flex justify-between p-[13px]">
       <a className="w-[50px] h-[50px] overflow-hidden rounded-full flex justify-center" href="/">
         <img className="max-w-full max-h-full object-cover"
           src="https://food-studio.co.za/wp-content/uploads/2019/08/Food-Studio-Logo.png"
@@ -44,7 +53,7 @@ const Header = () => {
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/">Home</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/about">About Us</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/contact">Contact Us</Link></li>
-          <li className="font-Arvo p-[10px] text-[18px]">Cart</li>
+          <li className="font-Arvo p-[10px] text-[18px]"><Link to="/cart">Cart ({cartItems.length})</Link></li>
         </ul>
         <div className="flex items-center">
           <button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"

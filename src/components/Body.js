@@ -47,7 +47,7 @@ const Body = () => {
           onKeyDown={handleKeyPress}
         />
       </div> */}
-      <div className="flex justify-around flex-wrap">
+      <div className="flex justify-around flex-wrap my-6 mx-3">
         {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -8,54 +8,71 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
+import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import ProfileClass from "./components/ProfileClass";
+import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/Store";
 
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
 const AppComponent = () => {
+  // Fetch user data from API..
+  const [myUser, setMyUser] = useState({
+    name: "Ajeet",
+    email: "aj@gmail.com",
+  });
+
   return (
-    <>
-      <Header />
-      {/* <Body /> */}
-      <Outlet/>     {/* dynamic pages will be rendered here */}
-      <Footer />
-    </>
+    // Provider is used to inform our app about the redux store
+    <Provider store = {store}>
+      {/* User Context is the context we created for logged in user, this provider will pass this context to all the components */}
+      <UserContext.Provider value={myUser}>
+        <Header />
+        <Outlet /> {/* dynamic pages will be rendered here */}
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppComponent/>,
-    errorElement: <Error/>,
+    element: <AppComponent />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
-        element: <Body/>
+        element: <Body />,
       },
       {
-        path: "/about",       //child path can be added but name it directly: path: 'profile' not path: '/profile' by latter one it will be localhost:1234/profile.
-        element: <About/>,
+        path: "/about", //child path can be added but name it directly: path: 'profile' not path: '/profile' by latter one it will be localhost:1234/profile.
+        element: <About />,
         children: [
           {
             path: "profile",
-            element: <ProfileClass/>
-          }
-        ]
+            element: <ProfileClass />,
+          },
+        ],
       },
       {
         path: "/contact",
-        element: <Contact/>
+        element: <Contact />,
       },
-      {                                        
+      {
         path: "/restaurant/:id",
-        element: <RestaurantMenu/>
+        element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
-    ]
+    ],
   },
-])
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter}/>); 
+root.render(<RouterProvider router={appRouter} />);

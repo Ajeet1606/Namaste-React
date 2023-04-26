@@ -1,0 +1,10 @@
+								NOTES + ASSIGNMENT
+
+Props Drilling:
+The process of passing data from Parent component to child component through a chain of other components, it goes through multiple other components to reach the destination. 
+Disadvantages: Makes our code cluttered when the hierarchy becomes large.
+		   If parent changes the data, all the childs in the hierarchy are re rendered.
+
+Lifting State up:
+The process of lifting the state up is used to moving the state of a component to higher in the component hierarchy so that other components can also access it. It's done for code reusability and avoid passing props through multiple layers of components.
+Basically state is managed by the a parent and passed to childs as props.
