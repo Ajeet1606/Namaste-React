@@ -34,7 +34,7 @@ const Header = () => {
   }
 
   // Subscribe to the redux store
-  const cartItems = useSelector(store => store.cart.items);
+  const cartItems = useSelector(store => store.cart.cartItems);
   
 
   return (
@@ -53,7 +53,7 @@ const Header = () => {
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/">Home</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/about">About Us</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/contact">Contact Us</Link></li>
-          <li className="font-Arvo p-[10px] text-[18px]"><Link to="/cart">Cart ({cartItems.length})</Link></li>
+          <li className="font-Arvo p-[10px] text-[18px]"><Link to="/cart">Cart ({cartItems.items.length})</Link></li>
         </ul>
         <div className="flex items-center">
           <button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"

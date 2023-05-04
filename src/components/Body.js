@@ -17,7 +17,10 @@ const Body = () => {
     
     const data = await fetch(
       GET_RESTAURANT_URL
-    );
+    ).catch(error => {
+      console.error(error);
+      return <ShimmerUI/>
+    });
     const json = await data.json();
 
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards) || [];

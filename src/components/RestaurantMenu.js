@@ -2,13 +2,26 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ItemCardComponent from "./ItemCardComponent";
+import RestaurantContext from "../utils/RestaurantContext";
 
 const RestaurantMenu = () => {
   
   const {id} = useParams();
   const restaurant = useRestaurantMenu(id);
+  const {name, cuisines, areaname, deliverymsg, avgrating, totalratings, itemCards, logo} = restaurant;
+  
+  //we've to pass the name, id, areaname & logo of restaurant to MealComponent so that they can be added to cart details along with a meal. Hence we create a context and put these into it.
 
-  // console.warn(restaurant);
+  const myData = {
+    name: name,
+    id: id,
+    areaname: areaname,
+    logo: logo
+  };
+
+  //----------------------    Context ends    ----------------------
+
+
   return (
     <>
       <div className="w-full">
@@ -16,15 +29,15 @@ const RestaurantMenu = () => {
         {/* Restaurant details */}
         <div className="w-[60%] mx-auto font-Arvo mt-[20px] flex justify-between items-baseline">
           <div>
-            <h2 className="font-bold text-[22px] mb-[15px]">{restaurant.name}</h2>
-            <h5 className="font-normal text-[#8d8d8d]">{restaurant.cuisines.join(", ")}</h5>
-            <h5 className="font-normal text-[#8d8d8d]">{restaurant.areaname}</h5>
-            <h5 className="font-normal text-[#8d8d8d]">{restaurant.deliverymsg}
+            <h2 className="font-bold text-[22px] mb-[15px]">{name}</h2>
+            <h5 className="font-normal text-[#8d8d8d]">{cuisines.join(", ")}</h5>
+            <h5 className="font-normal text-[#8d8d8d]">{areaname}</h5>
+            <h5 className="font-normal text-[#8d8d8d]">{deliverymsg}
             </h5>
           </div>
           <div className="flex flex-col shadow-md">
-            <span className="star-rating text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-green-800"><i className="fa fa-star"></i> {restaurant.avgrating}</span>
-            <span className="review-count text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-[#8d8d8d] font-[13px]">{restaurant.totalratings}</span>
+            <span className="star-rating text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-green-800"><i className="fa fa-star"></i> {avgrating}</span>
+            <span className="review-count text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-[#8d8d8d] font-[13px]">{totalratings}</span>
           </div>
         </div>
 
@@ -69,15 +82,17 @@ const RestaurantMenu = () => {
 
         {/* Menu items with categories */}
 
+        <RestaurantContext.Provider value={myData}>
         <div className="w-[60%] mx-auto my-1">
             {
-              restaurant.itemCards.map((itemCard, index) => {
+              itemCards.map((itemCard, index) => {
                 if(index != 0){
-                  return <ItemCardComponent itemCard = {itemCard} key = {index}/>
+                  return <ItemCardComponent key = {index} itemCard = {itemCard}/>
                 }
               })
             }
         </div>
+        </RestaurantContext.Provider>
       </div>
     </>
   );

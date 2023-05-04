@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import ProfileClass from "./components/ProfileClass";
 import UserContext from "./utils/UserContext";
+import RestaurantContext from "./utils/RestaurantContext";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
 
@@ -28,11 +29,11 @@ const AppComponent = () => {
     // Provider is used to inform our app about the redux store
     <Provider store = {store}>
       {/* User Context is the context we created for logged in user, this provider will pass this context to all the components */}
-      <UserContext.Provider value={myUser}>
+      <RestaurantContext.Provider value>
         <Header />
         <Outlet /> {/* dynamic pages will be rendered here */}
         <Footer />
-      </UserContext.Provider>
+      </RestaurantContext.Provider>
     </Provider>
   );
 };
