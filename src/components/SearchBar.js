@@ -1,16 +1,18 @@
 import React from "react";
-import { useState } from "react";
-// import { filterRestaurants } from "../utils/utils";
+import { useContext } from "react";
+import SearchTextContext from "../utils/SearchTextContext";
+
 
 
 function SearchBar() {
-    const [searchTxt, setsearchTxt] = useState("");
+    const {searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound} = useContext(SearchTextContext);
 
-  function handleKeyPress(event) {
-    if (event.key === "Enter") {
-      // filterRestaurants(searchTxt);
-    }
-  }
+    // built for search when enter is pressed.
+  // function handleKeyPress(event) {
+  //   if (event.key === "Enter") {
+  //     setsearchTxtFound(!searchTxtFound);
+  //   }
+  // }
   return (
     <div className="flex items-center">
       <input className="h-[35px] w-20 lg:w-[300px] md:w-52 sm:w-40 text-center text-lg border-2 border-[#818080] rounded font-Arvo"
@@ -19,8 +21,9 @@ function SearchBar() {
         value={searchTxt}
         onChange={(e) => {
           setsearchTxt(e.target.value);
+          setsearchTxtFound(!searchTxtFound);
         }}
-        onKeyDown={handleKeyPress}
+        // onKeyDown={handleKeyPress}
       />
     </div>
   );

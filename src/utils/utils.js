@@ -1,14 +1,19 @@
 import { addItem, removeItem, assignBasicDetails } from "./cartSlice";
 
-// export function filterRestaurants(searchTxt) {
-//   if (searchTxt === "") setFilteredRestaurants(global_restaurant_list);
-//   const filteredData = global_restaurant_list.filter(
-//     (restaurant) =>
-//       restaurant.data?.area?.toLowerCase() === searchTxt?.toLowerCase()
-//   );
-//   setFilteredRestaurants(filteredData);
-// }
 
+// Function to filter restaurants when searching.
+export function filterRestaurants(searchTxt, allRestaurants) {
+  if (searchTxt === "") return allRestaurants;
+  const filteredData = allRestaurants.filter(
+    (restaurant) => {
+      return (restaurant.data?.name?.toLowerCase().includes(searchTxt?.toLowerCase()) || 
+      restaurant.data?.area?.toLowerCase().includes(searchTxt?.toLowerCase()) )
+    }
+  );
+  return filteredData;
+}
+
+// Function to show the quantity of an item in meals page.
 export const findQuantity = (id, cartItems) => {
   const count = cartItems?.items?.findIndex((i) => i.id === id);
   if (count === undefined) return 0;
@@ -16,6 +21,7 @@ export const findQuantity = (id, cartItems) => {
   return (cartItems?.items[count]?.quantity);
 };
 
+// Function to be executed when add to cart is called, first checks if there's any restaurant conflict, we can't have orders from two restaurants together, then adds the meal.
 export const checkAvailability = (
   cur_id,
   menu,

@@ -1,7 +1,6 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
-import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 
 
@@ -20,7 +19,6 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useState("false");
   const [btnText, setBtnText] = useState("Login")
 
-  // const {user} = useContext(UserContext);
 
   function authenticate(){
     if(loggedIn){

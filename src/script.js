@@ -10,30 +10,26 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
-import ProfileClass from "./components/ProfileClass";
-import UserContext from "./utils/UserContext";
-import RestaurantContext from "./utils/RestaurantContext";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
+import SearchTextContext from "./utils/SearchTextContext";
 
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
 const AppComponent = () => {
-  // Fetch user data from API..
-  const [myUser, setMyUser] = useState({
-    name: "Ajeet",
-    email: "aj@gmail.com",
-  });
+
+  const [searchTxt, setsearchTxt] = useState("");
+  const [searchTxtFound, setsearchTxtFound] = useState(false);
 
   return (
     // Provider is used to inform our app about the redux store
-    <Provider store = {store}>
+    <Provider store={store}>
       {/* User Context is the context we created for logged in user, this provider will pass this context to all the components */}
-      <RestaurantContext.Provider value>
-        <Header />
+      <SearchTextContext.Provider value = {{searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound}}>
+        <Header/>
         <Outlet /> {/* dynamic pages will be rendered here */}
-        <Footer />
-      </RestaurantContext.Provider>
+      </SearchTextContext.Provider>
+      <Footer />
     </Provider>
   );
 };
@@ -51,12 +47,6 @@ const appRouter = createBrowserRouter([
       {
         path: "/about", //child path can be added but name it directly: path: 'profile' not path: '/profile' by latter one it will be localhost:1234/profile.
         element: <About />,
-        children: [
-          {
-            path: "profile",
-            element: <ProfileClass />,
-          },
-        ],
       },
       {
         path: "/contact",
@@ -68,8 +58,8 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />
-      }
+        element: <Cart />,
+      },
     ],
   },
 ]);

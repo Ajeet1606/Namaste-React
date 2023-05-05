@@ -60,11 +60,11 @@ const Cart = () => {
             </h4>
             <button className="border border-green-700 rounded text-green-700 font-Arvo mx-2 py-1 px-3 text-sm">
               Have an account? <br />
-              <span className="text-lg ">LOG IN</span>
+              <span className="text-md ">LOG IN</span>
             </button>
             <button className="bg-green-700 rounded text-white font-Arvo mx-2 py-1 px-3 text-sm">
               New to Food Studio? <br />
-              <span className="text-lg"> SIGN UP</span>
+              <span className="text-md"> SIGN UP</span>
             </button>
           </div>
           {/* Delivery Address */}
@@ -92,7 +92,7 @@ const Cart = () => {
               </Link>
             </div>
             <div className="mx-2">
-              <h3 className="text-lg font-semibold">{cartItems.restaurantName}</h3>
+              <h3 className="text-lg font-Arvo">{cartItems.restaurantName}</h3>
               <h4 className="text-sm">{cartItems.areaName}</h4>
             </div>
           </div>
@@ -103,15 +103,15 @@ const Cart = () => {
             {cartItems.items.map((curItem) => {
               return (
                 <div className="my-4 flex justify-between items-center">
-                  <h3 className="w-[40%]">{curItem.name}</h3>
+                  <h3 className="w-[40%] font-Arvo">{curItem.name}</h3>
                   <div className="w-[35%] flex justify-between items-center border border-gray-400 px-2 mx-2">
                     <button onClick={() => removeMenu(curItem)}>➖</button>
 
-                    <h4 className="mx-1">{curItem.quantity}</h4>
+                    <h4 className="mx-1 font-Arvo">{curItem.quantity}</h4>
 
                     <button onClick={() => addMenu(curItem)}>➕</button>
                   </div>
-                  <p className="w-[25%] text-end">{(curItem.price / 100) * curItem.quantity}Rs</p>
+                  <p className="w-[25%] text-end font-Arvo">{(curItem.price / 100) * curItem.quantity}Rs</p>
                 </div>
               );
             })}
