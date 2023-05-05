@@ -6,26 +6,20 @@ import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import SearchTextContext from "../utils/SearchTextContext";
 
-
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
 
-
-  const {searchTxt, searchTxtFound} = useContext(SearchTextContext);
-
+  const { searchTxt, searchTxtFound } = useContext(SearchTextContext);
 
   useEffect(() => {
-    getRestaurants();    
+    getRestaurants();
   }, []);
 
   async function getRestaurants() {
-    
-    const data = await fetch(
-      GET_RESTAURANT_URL
-    ).catch(error => {
+    const data = await fetch(GET_RESTAURANT_URL).catch((error) => {
       console.error(error);
-      return <ShimmerUI/>
+      return <ShimmerUI />;
     });
     const json = await data.json();
 
@@ -34,26 +28,26 @@ const Body = () => {
   }
 
   useEffect(() => {
-    const result = filterRestaurants(searchTxt, allRestaurants);
-    if(result.length === 0){
-      alert("No Restaurant Found");
-    }else{
-      setFilteredRestaurants(result);
+    if (allRestaurants.length > 0) {
+      const result = filterRestaurants(searchTxt, allRestaurants);
+      if (result.length === 0) {
+        alert("No Restaurant Found");
+      } else {
+        setFilteredRestaurants(result);
+      }
     }
-    
   }, [searchTxtFound]);
 
   const isOnline = useOnlineStatus();
-  if(!isOnline){
+  if (!isOnline) {
     alert("You're offline, Please check your internet connection");
-    return <ShimmerUI/>
+    return <ShimmerUI />;
   }
 
-  return (allRestaurants.length === 0 || filteredRestaurants.length === 0) ? (
+  return allRestaurants.length === 0 || filteredRestaurants.length === 0 ? (
     <ShimmerUI />
   ) : (
     <>
-      
       {/* <div className="search-container">
         <input
           type="search"
@@ -76,7 +70,5 @@ const Body = () => {
     </>
   );
 };
-
-
 
 export default Body;
