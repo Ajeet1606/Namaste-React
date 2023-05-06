@@ -9,10 +9,12 @@ import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
+import Login from "./components/Login";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
 import SearchTextContext from "./utils/SearchTextContext";
+import SignUp from "./components/SignUp";
 
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
@@ -60,6 +62,14 @@ const appRouter = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/login",
+        element: <Login/>,
+      },
+      {
+        path: "/signup",
+        element: <SignUp/>,
+      }
     ],
   },
 ]);

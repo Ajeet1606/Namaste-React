@@ -2,8 +2,6 @@ import React from "react";
 import { useContext } from "react";
 import SearchTextContext from "../utils/SearchTextContext";
 
-
-
 function SearchBar() {
     const {searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound} = useContext(SearchTextContext);
 

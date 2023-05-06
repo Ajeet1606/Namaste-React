@@ -28,11 +28,14 @@ const RestaurantCard = ({
             </h5>
             <h5 className="m-[2px] font-Average text-[#484848]">{area}</h5>
           </div>
-          <div className="w-[25%] text-center">
+          {
+            avgRating != "--" && (<div className="w-[25%] text-center">
             <span className="star-rating text-green-800 font-Arvo">
               <i className="fa fa-star"></i> {avgRating}
             </span>
-          </div>
+          </div>)
+          }
+          
         </div>
       </div>
     </Link>

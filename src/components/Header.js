@@ -33,7 +33,7 @@ const Header = () => {
 
   // Subscribe to the redux store
   const cartItems = useSelector(store => store.cart.cartItems);
-  
+  const path = "/login";
 
   return (
     <div className="flex justify-between p-[13px]">
@@ -54,8 +54,12 @@ const Header = () => {
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/cart">Cart ({cartItems.items.length})</Link></li>
         </ul>
         <div className="flex items-center">
-          <button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-           onClick={authenticate}>{btnText}</button>
+          {
+            btnText === "Login" ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            onClick={authenticate}>{btnText}</button></Link>) : (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            onClick={authenticate}>{btnText}</button>)
+          }
+          
         </div>
       </div>
     </div>
