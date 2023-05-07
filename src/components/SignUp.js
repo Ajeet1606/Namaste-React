@@ -1,17 +1,36 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import InputControl from "./InputControl";
 import { Link } from "react-router-dom";
-
+import UserContext from '../utils/UserContext';
 
 const SignUp = () => {
-  const [userData, setUserData] = useState({
+  const {setUserData} = useContext(UserContext);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [localUserData, setLocalUserData] = useState({
     name: "",
     email: "",
     password: "",
+    isLoggedIn: false
   });
 
   const handleClick = () => {
-      console.warn(userData);
+      console.warn(localUserData);
+      if (!localUserData.name || !localUserData.email || !localUserData.password) {
+        setErrorMessage("Please fill every field");
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 2000);
+        
+        return;
+      }
+      setLocalUserData(localUserData.isLoggedIn = true);
+      setUserData(localUserData);
+      setLocalUserData({
+        name: "",
+        email: "",
+        password: ""
+      });
   }
 
   return (
@@ -20,26 +39,31 @@ const SignUp = () => {
         <InputControl
           label="Name"
           placeholder="Enter Your Name"
+          value = {localUserData.name}
           onChange={(event) =>
-            setUserData((prev) => ({ ...prev, name: event.target.value }))
+            setLocalUserData((prev) => ({ ...prev, name: event.target.value }))
           }
         />
 
         <InputControl
           label="Email"
           placeholder="Enter Email Address"
+          value = {localUserData.email}
           onChange={(event) =>
-            setUserData((prev) => ({ ...prev, email: event.target.value }))
+            setLocalUserData((prev) => ({ ...prev, email: event.target.value }))
           }
         />
 
         <InputControl
           label="Password"
           placeholder="Enter Password"
+          value = {localUserData.password}
           onChange={(event) =>
-            setUserData((prev) => ({ ...prev, password: event.target.value }))
+            setLocalUserData((prev) => ({ ...prev, password: event.target.value }))
           }
         />
+
+        { errorMessage != "" && <p className='text-red-500 font-Arvo'>{errorMessage}</p> }
 
         <div className="w-full m-2">
           <button className="bg-green-400 border rounded p-2 w-full font-Arvo text-lg"

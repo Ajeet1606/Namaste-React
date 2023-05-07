@@ -14,22 +14,35 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
 import SearchTextContext from "./utils/SearchTextContext";
+import UserContext from "./utils/UserContext";
 import SignUp from "./components/SignUp";
 
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
 const AppComponent = () => {
-
   const [searchTxt, setsearchTxt] = useState("");
   const [searchTxtFound, setsearchTxtFound] = useState(false);
+
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    isLoggedIn: false
+  });
+
+  console.warn(userData);
 
   return (
     // Provider is used to inform our app about the redux store
     <Provider store={store}>
       {/* User Context is the context we created for logged in user, this provider will pass this context to all the components */}
-      <SearchTextContext.Provider value = {{searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound}}>
-        <Header/>
+      <SearchTextContext.Provider
+        value={{ searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound }}
+      >
+        <UserContext.Provider value={{userData, setUserData}}>
+          <Header />
         <Outlet /> {/* dynamic pages will be rendered here */}
+        </UserContext.Provider>
       </SearchTextContext.Provider>
       <Footer />
     </Provider>
@@ -64,12 +77,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login/>,
+        element: <Login />,
       },
       {
         path: "/signup",
-        element: <SignUp/>,
-      }
+        element: <SignUp />,
+      },
     ],
   },
 ]);

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
+import UserContext from "../utils/UserContext";
+import { FOOD_STDUIO_LOGO } from "./Config";
 
 
 function filterRestaurants(searchTxt, allRestaurants) {
@@ -16,20 +18,8 @@ function filterRestaurants(searchTxt, allRestaurants) {
 
 const Header = () => {
 
-  const [loggedIn, setLoggedIn] = useState("false");
-  const [btnText, setBtnText] = useState("Login")
+  const {userData} = useContext(UserContext);
 
-
-  function authenticate(){
-    if(loggedIn){
-      setBtnText("Logout");
-      setLoggedIn(!loggedIn);
-    }else{
-      setBtnText("Login");
-      setLoggedIn(!loggedIn);
-    }
-    
-  }
 
   // Subscribe to the redux store
   const cartItems = useSelector(store => store.cart.cartItems);
@@ -39,7 +29,7 @@ const Header = () => {
     <div className="flex justify-between p-[13px]">
       <a className="w-[50px] h-[50px] overflow-hidden rounded-full flex justify-center" href="/">
         <img className="max-w-full max-h-full object-cover"
-          src="https://food-studio.co.za/wp-content/uploads/2019/08/Food-Studio-Logo.png"
+          src= {FOOD_STDUIO_LOGO}
           alt=""
         />
       </a>
@@ -55,9 +45,9 @@ const Header = () => {
         </ul>
         <div className="flex items-center">
           {
-            btnText === "Login" ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-            onClick={authenticate}>{btnText}</button></Link>) : (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-            onClick={authenticate}>{btnText}</button>)
+            !userData.isLoggedIn ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            >Login</button></Link>) : (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            >{userData.name}</button>)
           }
           
         </div>

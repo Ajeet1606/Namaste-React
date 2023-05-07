@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "./Config";
+import { FOOD_STDUIO_LOGO, IMG_CDN_URL } from "./Config";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = ({
@@ -20,6 +20,7 @@ const RestaurantCard = ({
           src={IMG_CDN_URL + cloudinaryImageId}
           alt="restaurants-logo"
         />
+
         <h3 className="m-[2px] font-Arvo font-normal">{name}</h3>
         <div className="flex  items-center">
           <div className="px-[3px] w-[75%]">
@@ -28,14 +29,13 @@ const RestaurantCard = ({
             </h5>
             <h5 className="m-[2px] font-Average text-[#484848]">{area}</h5>
           </div>
-          {
-            avgRating != "--" && (<div className="w-[25%] text-center">
-            <span className="star-rating text-green-800 font-Arvo">
-              <i className="fa fa-star"></i> {avgRating}
-            </span>
-          </div>)
-          }
-          
+          {avgRating != "--" && (
+            <div className="w-[25%] text-center">
+              <span className="star-rating text-green-800 font-Arvo">
+                <i className="fa fa-star"></i> {avgRating}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </Link>
