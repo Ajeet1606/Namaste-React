@@ -9,7 +9,7 @@ const ItemCardComponent = (itemCard) => {
   //extracting data from props
   const title = itemCard?.itemCard?.card?.card?.title;
   const menu = itemCard?.itemCard?.card?.card?.itemCards;
-
+  // console.warn(menu);
   //when there is no dish 
   if (menu === undefined) {
     return;

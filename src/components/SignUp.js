@@ -1,37 +1,67 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from "react";
 import InputControl from "./InputControl";
-import { Link } from "react-router-dom";
-import UserContext from '../utils/UserContext';
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase";
+import UserContext from "../utils/UserContext";
 
 const SignUp = () => {
-  const {setUserData} = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
+  const [signUpInProcess, setSignUpInProcess] = useState(false);
 
   const [localUserData, setLocalUserData] = useState({
     name: "",
     email: "",
     password: "",
-    isLoggedIn: false
   });
 
+  //context
+  const {setUserName} = useContext(UserContext);
+
+  const navigate = useNavigate();
+
   const handleClick = () => {
-      console.warn(localUserData);
-      if (!localUserData.name || !localUserData.email || !localUserData.password) {
-        setErrorMessage("Please fill every field");
-        setTimeout(() => {
-          setErrorMessage("");
-        }, 2000);
-        
-        return;
-      }
-      setLocalUserData(localUserData.isLoggedIn = true);
-      setUserData(localUserData);
-      setLocalUserData({
-        name: "",
-        email: "",
-        password: ""
+    // console.warn(localUserData);
+    if (
+      !localUserData.name ||
+      !localUserData.email ||
+      !localUserData.password
+    ) {
+      setErrorMessage("Please fill every field");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
+
+      return;
+    }
+
+    //create user in firebase
+    setSignUpInProcess(true);
+
+    createUserWithEmailAndPassword(
+      auth,
+      localUserData.email,
+      localUserData.password
+    )
+      .then (async(res) => {
+        await updateProfile(res.user, {
+          displayName: localUserData.name,
+        });
+        setUserName(res.user.displayName);
+        setSignUpInProcess(false);
+        navigate("/login");
+      })
+      .catch((err) => {
+        setSignUpInProcess(false);
+        alert(err.code + " " + err.message);
       });
-  }
+
+    setLocalUserData({
+      name: "",
+      email: "",
+      password: "",
+    });
+  };
 
   return (
     <div className="w-full h-full ">
@@ -39,7 +69,7 @@ const SignUp = () => {
         <InputControl
           label="Name"
           placeholder="Enter Your Name"
-          value = {localUserData.name}
+          value={localUserData.name}
           onChange={(event) =>
             setLocalUserData((prev) => ({ ...prev, name: event.target.value }))
           }
@@ -48,7 +78,7 @@ const SignUp = () => {
         <InputControl
           label="Email"
           placeholder="Enter Email Address"
-          value = {localUserData.email}
+          value={localUserData.email}
           onChange={(event) =>
             setLocalUserData((prev) => ({ ...prev, email: event.target.value }))
           }
@@ -57,19 +87,38 @@ const SignUp = () => {
         <InputControl
           label="Password"
           placeholder="Enter Password"
-          value = {localUserData.password}
+          value={localUserData.password}
           onChange={(event) =>
-            setLocalUserData((prev) => ({ ...prev, password: event.target.value }))
+            setLocalUserData((prev) => ({
+              ...prev,
+              password: event.target.value,
+            }))
           }
         />
 
-        { errorMessage != "" && <p className='text-red-500 font-Arvo'>{errorMessage}</p> }
+        {errorMessage != "" && (
+          <p className="text-red-500 font-Arvo">{errorMessage}</p>
+        )}
 
         <div className="w-full m-2">
-          <button className="bg-green-400 border rounded p-2 w-full font-Arvo text-lg"
-          onClick={handleClick} >
+          {
+            signUpInProcess ? (
+              <button
+            className="bg-gray-400 border rounded p-2 w-full font-Arvo text-lg"
+            onClick={handleClick} disabled = {true}
+          >
             Sign Up
           </button>
+            ): (
+              <button
+            className="bg-green-400 border rounded p-2 w-full font-Arvo text-lg"
+            onClick={handleClick}
+          >
+            Sign Up
+          </button>
+            )
+          }
+          
         </div>
 
         <p className="font-Arvo">

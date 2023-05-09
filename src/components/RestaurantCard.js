@@ -1,4 +1,4 @@
-import { FOOD_STDUIO_LOGO, IMG_CDN_URL } from "./Config";
+import { IMG_CDN_URL } from "./Config";
 import { Link } from "react-router-dom";
 
 const RestaurantCard = ({
@@ -12,6 +12,7 @@ const RestaurantCard = ({
   // console.warn(id);
   const path = "/restaurant/" + id;
   // console.warn(path);
+  if(!name) return;
   return (
     <Link to={path}>
       <div className="w-[250px] m-2 px-[10px] py-[5px] rounded-[5px] transition duration-300 ease-in-out hover:scale-110 shadow-md">
@@ -25,7 +26,7 @@ const RestaurantCard = ({
         <div className="flex  items-center">
           <div className="px-[3px] w-[75%]">
             <h5 className="m-[2px] font-Average text-[#484848]">
-              {cuisines.join(", ")}
+              {cuisines?.join(", ")}
             </h5>
             <h5 className="m-[2px] font-Average text-[#484848]">{area}</h5>
           </div>

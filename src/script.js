@@ -23,14 +23,7 @@ const AppComponent = () => {
   const [searchTxt, setsearchTxt] = useState("");
   const [searchTxtFound, setsearchTxtFound] = useState(false);
 
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    isLoggedIn: false
-  });
-
-  console.warn(userData);
+  const [userName, setUserName] = useState("");
 
   return (
     // Provider is used to inform our app about the redux store
@@ -39,7 +32,7 @@ const AppComponent = () => {
       <SearchTextContext.Provider
         value={{ searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound }}
       >
-        <UserContext.Provider value={{userData, setUserData}}>
+        <UserContext.Provider value={{userName, setUserName}}>
           <Header />
         <Outlet /> {/* dynamic pages will be rendered here */}
         </UserContext.Provider>

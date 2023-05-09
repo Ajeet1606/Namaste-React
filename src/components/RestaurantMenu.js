@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
   const {id} = useParams();
   const restaurant = useRestaurantMenu(id);
   const {name, cuisines, areaname, deliverymsg, avgrating, totalratings, itemCards, logo} = restaurant;
-  
+    console.warn(itemCards);
   //we've to pass the name, id, areaname & logo of restaurant to MealComponent so that they can be added to cart details along with a meal. Hence we create a context and put these into it.
 
   const myData = {
@@ -85,7 +85,7 @@ const RestaurantMenu = () => {
         <RestaurantContext.Provider value={myData}>
         <div className="w-[60%] mx-auto my-1">
             {
-              itemCards.map((itemCard, index) => {
+              itemCards?.map((itemCard, index) => {
                 if(index != 0){
                   return <ItemCardComponent key = {index} itemCard = {itemCard}/>
                 }

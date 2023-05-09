@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -18,12 +18,11 @@ function filterRestaurants(searchTxt, allRestaurants) {
 
 const Header = () => {
 
-  const {userData} = useContext(UserContext);
-
+  const {userName} = useContext(UserContext);
 
   // Subscribe to the redux store
   const cartItems = useSelector(store => store.cart.cartItems);
-  const path = "/login";
+  const path = "/signup";
 
   return (
     <div className="flex justify-between p-[13px]">
@@ -45,9 +44,10 @@ const Header = () => {
         </ul>
         <div className="flex items-center">
           {
-            !userData.isLoggedIn ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-            >Login</button></Link>) : (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-            >{userData.name}</button>)
+            userName === "" ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            >Login</button></Link>) : 
+            (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            >{userName}</button>)
           }
           
         </div>

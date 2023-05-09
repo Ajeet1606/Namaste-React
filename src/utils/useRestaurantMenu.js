@@ -28,8 +28,9 @@ const useRestaurantMenu = (id) => {
         const json = await data.json();
     
         const card = json?.data?.cards[0]?.card?.card?.info;
-        const cuisineDetails = json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+        const cuisineDetails = (json?.data?.cards[1]?.groupedCard?.cardGroupMap?.REGULAR?.cards) ? (json?.data?.cards[1]?.groupedCard?.cardGroupMap?.REGULAR?.cards): (json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
         
+
         setrestaurant({
             name: card?.name,
             logo: card?.cloudinaryImageId,
