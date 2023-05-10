@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import UserContext from "../utils/UserContext";
+import { useDispatch } from "react-redux"; 
+import { setUser } from "../utils/userSlice";
 
 const Login = () => {
   const [loginInProcess, setLoginInProcess] = useState(false);
@@ -17,6 +19,9 @@ const Login = () => {
   const {setUserName} = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  //store operations
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     // console.warn(localUserData);
@@ -40,6 +45,8 @@ const Login = () => {
         const user = res.user;
         setUserName(user.displayName);
         setLoginInProcess(false);
+        //dispatch this user to user slice in store.
+        dispatch(setUser(localUserData));
         navigate("/");
       })
       .catch((err) => {

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import About from "./components/About";
+// import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
@@ -17,6 +17,8 @@ import SearchTextContext from "./utils/SearchTextContext";
 import UserContext from "./utils/UserContext";
 import SignUp from "./components/SignUp";
 
+
+const About = lazy(() => import('./components/About'));
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
 const AppComponent = () => {
@@ -34,7 +36,9 @@ const AppComponent = () => {
       >
         <UserContext.Provider value={{userName, setUserName}}>
           <Header />
-        <Outlet /> {/* dynamic pages will be rendered here */}
+          <Suspense fallback = {<div>Loading.......</div>}>
+            <Outlet /> {/* dynamic pages will be rendered here */}
+          </Suspense>
         </UserContext.Provider>
       </SearchTextContext.Provider>
       <Footer />

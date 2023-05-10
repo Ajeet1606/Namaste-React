@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";

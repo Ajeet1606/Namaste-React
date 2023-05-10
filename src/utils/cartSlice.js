@@ -81,6 +81,20 @@ export default cartSlice.reducer;
  *          - reducers are exported by default, cartSlice.reducer
  *          - actions are exported by name(many), const {addItem, removeItem} = cartSlice.actions
  * 
+ *      - User Slice
+ *          - Create userSlice using createSlice imported from RTK
+ *          - it takes an object: {
+ *                  name: 'user',
+ *                  initialState: {
+ *                      email: "",
+ *                   },
+ *                  reducers: {
+ *                      setUser(state, action){},
+ *                      clearUser(state, action){}
+ *                  }
+ *              }
+ *          - export, actions using named export
+ *          - export reducer by default.
  *  - configure in redux store
  *      - import the slice, reducers come by dedfault
  *      - reducer: {

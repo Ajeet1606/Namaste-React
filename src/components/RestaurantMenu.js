@@ -37,7 +37,11 @@ const RestaurantMenu = () => {
           </div>
           <div className="flex flex-col shadow-md">
             <span className="star-rating text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-green-800"><i className="fa fa-star"></i> {avgrating}</span>
-            <span className="review-count text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-[#8d8d8d] font-[13px]">{totalratings}</span>
+            {
+              totalratings != null && (
+                <span className="review-count text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-[#8d8d8d] font-[13px]">{totalratings}</span>
+              )
+            }
           </div>
         </div>
 

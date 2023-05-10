@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
-
 import { addItem, clearCart, removeItem } from "../utils/cartSlice";
 import { IMG_CDN_URL } from "./Config";
+
+
 const Cart = () => {
 
   // State variables
   const [totalBill, setTotalBill] = useState(0);
 
 
-  // Subscribe to items arrat of cart slice in the store.
+  // Subscribe to items array of cart slice in the store.
   const cartItems = useSelector((store) => store.cart.cartItems);
  
+  //subscribe to user slice to get his respective cart from firebase.
+  const user = useSelector((store) => store.user);
+
+  //path will take you to respective restaurnat menu.
   const path = "/restaurant/" + cartItems.restaurant_id;
 
   useEffect(() => {
