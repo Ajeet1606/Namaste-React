@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import InputControl from "./InputControl";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
-import UserContext from "../utils/UserContext";
 
 const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -15,13 +14,10 @@ const SignUp = () => {
     password: "",
   });
 
-  //context
-  const {setUserName} = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // console.warn(localUserData);
     if (
       !localUserData.name ||
       !localUserData.email ||
@@ -47,13 +43,15 @@ const SignUp = () => {
         await updateProfile(res.user, {
           displayName: localUserData.name,
         });
-        setUserName(res.user.displayName);
         setSignUpInProcess(false);
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
+        setErrorMessage(err.code + " " + err.message);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 5000);
         setSignUpInProcess(false);
-        alert(err.code + " " + err.message);
       });
 
     setLocalUserData({
@@ -64,7 +62,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full h-full ">
+    <div className="w-full min-h-screen">
       <div className="w-1/2 flex flex-col items-center mx-auto border rounded border-gray-500  p-5 m-5">
         <InputControl
           label="Name"

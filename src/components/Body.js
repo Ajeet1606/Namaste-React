@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { filterRestaurants } from "../utils/utils";
-import { GET_RESTAURANT_URL, url_array } from "./Config";
+import { GET_RESTAURANT_URL } from "./Config";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import SearchTextContext from "../utils/SearchTextContext";
@@ -71,7 +71,7 @@ const Body = () => {
     <ShimmerUI />
   ) : (
     <>
-      <div className="flex justify-around flex-wrap my-6 mx-3">
+      <div className="flex justify-around flex-wrap my-6 mx-3 min-h-screen">
         {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant?.data?.data} key={restaurant?.data?.data?.id} />

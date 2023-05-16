@@ -1,28 +1,41 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
-import UserContext from "../utils/UserContext";
 import { FOOD_STDUIO_LOGO } from "./Config";
-
-
-function filterRestaurants(searchTxt, allRestaurants) {
-  if (searchTxt === "") return allRestaurants;
-  const filteredData = allRestaurants.filter(
-    (restaurant) =>
-      restaurant.data?.area?.toLowerCase() === searchTxt?.toLowerCase()
-  );
-  return filteredData;
-}
+import { auth } from "../firebase";
 
 
 const Header = () => {
 
-  const {userName} = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
   // Subscribe to the redux store
   const cartItems = useSelector(store => store.cart.cartItems);
   const path = "/signup";
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async(user) => {
+      if(user){
+        if(user.displayName === "" || !user.displayName){
+          await user.reload();
+        }
+        setUser(user);
+      }else{
+        setUser(null);
+      }
+    })
+
+    return () => {
+      unsubscribe();
+    }
+  })
+
+  const handleClick = () => {
+    console.log("log out");
+    auth.signOut();
+    // setUser(null);
+  }
 
   return (
     <div className="flex justify-between p-[13px]">
@@ -35,7 +48,7 @@ const Header = () => {
 
       <SearchBar/>
 
-      <div className="flex justify-end items-center w-[30rem]">
+      <div className="flex justify-end items-center ">
         <ul className="list-none flex justify-between m-0 p-0">
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/">Home</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/about">About Us</Link></li>
@@ -44,10 +57,11 @@ const Header = () => {
         </ul>
         <div className="flex items-center">
           {
-            userName === "" ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            !user ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
             >Login</button></Link>) : 
             (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
-            >{userName}</button>)
+            onClick= {() => handleClick()}
+            >{user.displayName}</button>)
           }
           
         </div>

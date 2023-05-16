@@ -14,7 +14,6 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
 import SearchTextContext from "./utils/SearchTextContext";
-import UserContext from "./utils/UserContext";
 import SignUp from "./components/SignUp";
 
 
@@ -25,7 +24,6 @@ const AppComponent = () => {
   const [searchTxt, setsearchTxt] = useState("");
   const [searchTxtFound, setsearchTxtFound] = useState(false);
 
-  const [userName, setUserName] = useState("");
 
   return (
     // Provider is used to inform our app about the redux store
@@ -34,12 +32,12 @@ const AppComponent = () => {
       <SearchTextContext.Provider
         value={{ searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound }}
       >
-        <UserContext.Provider value={{userName, setUserName}}>
+        
           <Header />
           <Suspense fallback = {<div>Loading.......</div>}>
-            <Outlet /> {/* dynamic pages will be rendered here */}
+            <Outlet /> {/**dynamic pages will be rendered here */}
+            
           </Suspense>
-        </UserContext.Provider>
       </SearchTextContext.Provider>
       <Footer />
     </Provider>

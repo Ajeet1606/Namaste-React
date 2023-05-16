@@ -3,7 +3,6 @@ import InputControl from "./InputControl";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import UserContext from "../utils/UserContext";
 import { useDispatch } from "react-redux"; 
 import { setUser } from "../utils/userSlice";
 
@@ -15,16 +14,13 @@ const Login = () => {
     password: "",
   });
 
-  //context
-  const {setUserName} = useContext(UserContext);
-
+  //react-router-dom hook to navigate to home once logged in.
   const navigate = useNavigate();
 
   //store operations
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    // console.warn(localUserData);
     if (!localUserData.email || !localUserData.password) {
       setErrorMessage("Please fill every field");
       setTimeout(() => {
@@ -42,16 +38,17 @@ const Login = () => {
       localUserData.password
     )
       .then((res) => {
-        const user = res.user;
-        setUserName(user.displayName);
         setLoginInProcess(false);
         //dispatch this user to user slice in store.
-        dispatch(setUser(localUserData));
+        dispatch(setUser(localUserData.email));
         navigate("/");
       })
       .catch((err) => {
+        setErrorMessage(err.code + " " + err.message);
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 5000);
         setLoginInProcess(false);
-        alert(err.code + " " + err.message);
       });
 
     setLocalUserData({
@@ -62,7 +59,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="w-full h-full ">
+      <div className="w-full min-h-screen">
         <div className="w-1/2 flex flex-col items-center mx-auto border rounded border-gray-500  p-5 m-5">
           <InputControl
             label="Email"

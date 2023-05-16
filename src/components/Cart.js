@@ -1,75 +1,125 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Link } from "react-router-dom";
 import { addItem, clearCart, removeItem } from "../utils/cartSlice";
 import { IMG_CDN_URL } from "./Config";
-
+import { auth, database } from "../firebase";
 
 const Cart = () => {
-
+  //------------------------------------------- Initialisation area ---------------------------------------
   // State variables
   const [totalBill, setTotalBill] = useState(0);
-
+  const [currentUser, setCurrentUser] = useState(null);
 
   // Subscribe to items array of cart slice in the store.
   const cartItems = useSelector((store) => store.cart.cartItems);
- 
-  //subscribe to user slice to get his respective cart from firebase.
-  const user = useSelector((store) => store.user);
 
   //path will take you to respective restaurnat menu.
   const path = "/restaurant/" + cartItems.restaurant_id;
 
+  //--------------------------------------- useEffects --------------------------------------------------
   useEffect(() => {
     let total = 0;
-    cartItems.items.forEach(cur => {
-      total += (cur.price / 100) * (cur.quantity);
-    })
+    cartItems.items.forEach((cur) => {
+      total += (cur.price / 100) * cur.quantity;
+    });
     total.toFixed(2);
     setTotalBill(total);
-  }, [])
-  
+  }, []);
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if(user){
+        setCurrentUser(user);
+      }else{
+        setCurrentUser(null);
+      }
+    })
+
+    return () => {
+      unsubscribe();
+    }
+  })
+
+  //--------------------------------------- Cart modifications ------------------------------------------
 
   const dispatch = useDispatch();
+  const store = useStore();
 
   // Add menu in cart
   const addMenu = (curItem) => {
     dispatch(addItem(curItem));
-    setTotalBill(totalBill + (curItem.price)/100);
+    setTotalBill(totalBill + curItem.price / 100);
   };
 
   //remove menu
   const removeMenu = (curItem) => {
     dispatch(removeItem(curItem));
-    const bill = Math.max(0, totalBill - (curItem.price)/100);
+    const bill = Math.max(0, totalBill - curItem.price / 100);
     setTotalBill(bill);
   };
 
+  //---------------------------------------- Checkout -> Push data to Firebase RTDB -----------------------
 
-  if(cartItems.items.length == 0){
-    return <h1 className="m-10 text-4xl text-center font-Arvo font-bold">Cart is Empty</h1>
+  const handleClick = () => {
+    //check if user is logged in.
+    if (!currentUser) {
+      alert("Please Login/Sign up first to place an order");
+      return;
+    }
+
+    //fetch cart items
+
+    const cartState = store.getState().cart;
+    const cartItems = cartState.cartItems;
+
+    //user details
+    const uid = currentUser.uid;
+    const databaseRef = database.ref("users/" + uid);
+    const newChildRef = databaseRef.push();
+    newChildRef.set(cartItems);
+
+    alert("Order Successful");
+    dispatch(clearCart());
+  };
+
+  //---------------------------------------- Rendering area -----------------------------------------------
+
+  if (cartItems.items.length == 0) {
+    return (
+      <h1 className="m-10 text-4xl text-center font-Arvo font-bold min-h-screen">
+        Cart is Empty
+      </h1>
+    );
   }
 
   return (
     <>
-      <div className="flex bg-slate-200 px-4">
+      <div className="flex bg-slate-200 px-4 min-h-screen">
         {/* account details side */}
         <div className="w-[70%] m-4 p-4">
           {/* Account */}
           <div className="py-5 px-10 bg-white">
             <h3 className="text-lg font-bold font-Arvo">Account</h3>
-            <h4 className="font-Arvo text-slate-400 mb-4">
-              To place your order now, log in to your existing account or sign
-              up.
-            </h4>
-            <button className="border border-green-700 rounded text-green-700 font-Arvo mx-2 py-1 px-3 text-sm">
-              Have an account? <br />
-              <span className="text-md ">LOG IN</span>
-            </button>
-            <button className="bg-green-700 rounded text-white font-Arvo mx-2 py-1 px-3 text-sm">
-              New to Food Studio? <br />
-              <span className="text-md"> SIGN UP</span>
-            </button>
+            {currentUser ? (
+              <h1>Welcome {currentUser.displayName}</h1>
+            ) : (
+              <div>
+                <h4 className="font-Arvo text-slate-400 mb-4">
+                  To place your order now, log in to your existing account or
+                  sign up.
+                </h4>
+                <button className="border border-green-700 rounded text-green-700 font-Arvo mx-2 py-1 px-3 text-sm">
+                  Have an account? <br />
+                  <span className="text-md ">LOG IN</span>
+                </button>
+                <button className="bg-green-700 rounded text-white font-Arvo mx-2 py-1 px-3 text-sm">
+                  New to Food Studio? <br />
+                  <span className="text-md"> SIGN UP</span>
+                </button>
+              </div>
+            )}
           </div>
           {/* Delivery Address */}
           <div className="py-5 px-10 bg-white my-4">
@@ -81,18 +131,17 @@ const Cart = () => {
           </div>
         </div>
 
-
-
         {/* Cart details side */}
-        <div className="bg-white w-[30%] h-96 p-4 my-8 mx-4 ">
+        <div className="bg-white w-[30%] h-[70vh] p-4 my-8 mx-4 ">
           {/* restaurant details */}
           <div className="flex">
             <div className="w-16 h-12 mx-2 overflow-hidden">
               <Link to={path}>
-              <img className="min-h-full max-h-full object-fill rounded"
-                src={IMG_CDN_URL + cartItems.logo}
-                alt=""
-              />
+                <img
+                  className="min-h-full max-h-full object-fill rounded"
+                  src={IMG_CDN_URL + cartItems.logo}
+                  alt=""
+                />
               </Link>
             </div>
             <div className="mx-2">
@@ -103,7 +152,7 @@ const Cart = () => {
 
           {/* menu items list */}
           {/* Title, buttons to change quantity, price per piece */}
-          <div className="h-[60%] mt-4 overflow-y-auto">
+          <div className="h-[35vh] overflow-y-auto mt-4">
             {cartItems.items.map((curItem) => {
               return (
                 <div className="my-4 flex justify-between items-center">
@@ -115,7 +164,9 @@ const Cart = () => {
 
                     <button onClick={() => addMenu(curItem)}>➕</button>
                   </div>
-                  <p className="w-[25%] text-end font-Arvo">{(curItem.price / 100) * curItem.quantity}Rs</p>
+                  <p className="w-[25%] text-end font-Arvo">
+                    {(curItem.price / 100) * curItem.quantity}Rs
+                  </p>
                 </div>
               );
             })}
@@ -128,10 +179,20 @@ const Cart = () => {
           </div>
 
           <div className="flex justify-between my-1">
-            <button className="bg-green-600 text-white font-Arvo p-1 rounded"
-            onClick={() => {dispatch(clearCart())}}
-            >Clear Cart</button>
-            <button className="bg-green-600 text-white font-Arvo p-1 rounded">CheckOut</button>
+            <button
+              className="bg-green-600 text-white font-Arvo p-1 rounded"
+              onClick={() => {
+                dispatch(clearCart());
+              }}
+            >
+              Clear Cart
+            </button>
+            <button
+              className="bg-green-600 text-white font-Arvo p-1 rounded"
+              onClick={handleClick}
+            >
+              CheckOut
+            </button>
           </div>
         </div>
       </div>
