@@ -22,7 +22,7 @@ const Body = () => {
       console.error(error);
       return <ShimmerUI />;
     });
-    const json = await data.json();
+    const json = await data?.json();
 
     // setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards || []);
     // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards || []);

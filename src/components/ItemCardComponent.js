@@ -30,8 +30,8 @@ const ItemCardComponent = (itemCard) => {
           </div>
 
           {expanded && 
-            menu.map((curMenu) => {
-              return <MealComponent curMenu = {curMenu}/>;
+            menu.map((curMenu, index) => {
+              return <MealComponent curMenu = {curMenu} key={index}/>;
             })
           }
         </div>

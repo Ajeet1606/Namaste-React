@@ -32,7 +32,7 @@ const Header = () => {
   })
 
   const handleClick = () => {
-    console.log("log out");
+    // console.log("log out");
     auth.signOut();
     // setUser(null);
   }

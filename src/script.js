@@ -16,14 +16,12 @@ import store from "./utils/Store";
 import SearchTextContext from "./utils/SearchTextContext";
 import SignUp from "./components/SignUp";
 
-
-const About = lazy(() => import('./components/About'));
+const About = lazy(() => import("./components/About"));
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
 
 const AppComponent = () => {
   const [searchTxt, setsearchTxt] = useState("");
   const [searchTxtFound, setsearchTxtFound] = useState(false);
-
 
   return (
     // Provider is used to inform our app about the redux store
@@ -32,12 +30,10 @@ const AppComponent = () => {
       <SearchTextContext.Provider
         value={{ searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound }}
       >
-        
-          <Header />
-          <Suspense fallback = {<div>Loading.......</div>}>
-            <Outlet /> {/**dynamic pages will be rendered here */}
-            
-          </Suspense>
+        <Header />
+        <Suspense fallback={<div>Loading.......</div>}>
+          <Outlet /> {/**dynamic pages will be rendered here */}
+        </Suspense>
       </SearchTextContext.Provider>
       <Footer />
     </Provider>
