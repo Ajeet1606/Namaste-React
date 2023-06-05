@@ -31,5 +31,6 @@ Pick a dish, add to cart, place order, get delivered.
 1. Clone the repository 
 2. Run ```npm init```
 3. Run ```npm start```.
+4. Make sure you've allow CORS extension installed in your browser.
 
 Drop a 💫 if you liked it.
