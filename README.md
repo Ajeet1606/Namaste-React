@@ -9,8 +9,9 @@ Pick a dish, add to cart, place order, get delivered.
 1. Frontend Library: React JS
 2. Styling: Tailwind CSS
 3. Database: Firebase
-4. Authentication: Firebase-Auth
-5. State Management: Redux Toolkit
+4. Bundler: Parcel
+5. Authentication: Firebase-Auth
+6. State Management: Redux Toolkit
 
 ## Working of project
 1. We fetch the restaurants of your city from Swiggy API, getting the live data.
