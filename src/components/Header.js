@@ -8,21 +8,24 @@ import { auth } from "../firebase";
 
 const Header = () => {
 
-  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState(null);
 
   // Subscribe to the redux store
   const cartItems = useSelector(store => store.cart.cartItems);
   const path = "/signup";
 
+  console.log("Header rendering");
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async(user) => {
-      if(user){
-        if(user.displayName === "" || !user.displayName){
+      console.log(user);
+      if(user != null){
+        console.log(user.displayName);
+        if(!user.displayName){
           await user.reload();
         }
-        setUser(user);
+        setUserName(user.displayName);
       }else{
-        setUser(null);
+        setUserName(null);
       }
     })
 
@@ -57,11 +60,11 @@ const Header = () => {
         </ul>
         <div className="flex items-center">
           {
-            !user ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
+            !userName ? (<Link to={path}><button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
             >Login</button></Link>) : 
             (<button className=" bg-inherit border-2 border-black rounded p-1 font-Arvo text-[18px] h-[37px]"
             onClick= {() => handleClick()}
-            >{user.displayName}</button>)
+            >{userName}</button>)
           }
           
         </div>

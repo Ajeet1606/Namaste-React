@@ -45,6 +45,7 @@ const Login = () => {
       })
       .catch((err) => {
         setErrorMessage(err.code + " " + err.message);
+        console.log(errorMessage);
         setTimeout(() => {
           setErrorMessage("");
         }, 5000);
@@ -64,6 +65,7 @@ const Login = () => {
           <InputControl
             label="Email"
             placeholder="Enter Email Address"
+            type="email"
             value={localUserData.email}
             onChange={(event) =>
               setLocalUserData((prev) => ({
@@ -76,6 +78,7 @@ const Login = () => {
           <InputControl
             label="Password"
             placeholder="Enter Password"
+            type="password"
             value={localUserData.password}
             onChange={(event) =>
               setLocalUserData((prev) => ({

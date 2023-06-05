@@ -40,9 +40,13 @@ const SignUp = () => {
       localUserData.password
     )
       .then (async(res) => {
+        console.log(res.user.displayName);
+        console.log("Updating profile name");
         await updateProfile(res.user, {
           displayName: localUserData.name,
         });
+        console.log("profile updated");
+        console.log(res.user.displayName);
         setSignUpInProcess(false);
         navigate("/");
       })
@@ -64,9 +68,11 @@ const SignUp = () => {
   return (
     <div className="w-full min-h-screen">
       <div className="w-1/2 flex flex-col items-center mx-auto border rounded border-gray-500  p-5 m-5">
+   
         <InputControl
           label="Name"
           placeholder="Enter Your Name"
+          type="text"
           value={localUserData.name}
           onChange={(event) =>
             setLocalUserData((prev) => ({ ...prev, name: event.target.value }))
@@ -76,6 +82,7 @@ const SignUp = () => {
         <InputControl
           label="Email"
           placeholder="Enter Email Address"
+          type="email"
           value={localUserData.email}
           onChange={(event) =>
             setLocalUserData((prev) => ({ ...prev, email: event.target.value }))
@@ -85,6 +92,7 @@ const SignUp = () => {
         <InputControl
           label="Password"
           placeholder="Enter Password"
+          type="password"
           value={localUserData.password}
           onChange={(event) =>
             setLocalUserData((prev) => ({
@@ -119,6 +127,7 @@ const SignUp = () => {
           
         </div>
 
+        
         <p className="font-Arvo">
           Already have an account,
           <Link to="/login">

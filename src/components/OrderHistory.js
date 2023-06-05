@@ -12,8 +12,13 @@ const OrderHistory = (currentUser) => {
       const databaseRef = database.ref("users/" + uid);
 
       databaseRef.on("value", (snapshot) => {
-        const data = Object.values(snapshot.val());
-        setOrders(data);
+        const val= snapshot.val();
+        if(val){
+          const data = Object.values(val);
+          setOrders(data);
+        }
+        // const data = Object?.values(snapshot.val());
+        // setOrders(data);
       });
       console.log(orders);
       // databaseRef.off("value");
