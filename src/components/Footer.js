@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 const Footer = () => {
 
 
@@ -6,10 +6,10 @@ const Footer = () => {
     <>
       <div className="p-5 mb-0 bg-blue-900">
         <div className="flex justify-evenly">
-          <span className="text-white text-xl font-Arvo">Home</span>
-          <span className="text-white text-xl font-Arvo">About Us</span>
-          <span className="text-white text-xl font-Arvo">Careers</span>
-          <span className="text-white text-xl font-Arvo">Opportunites</span>
+          <span className="text-white text-xl font-Arvo cursor-pointer"><Link to="/">Home</Link></span>
+          <span className="text-white text-xl font-Arvo cursor-pointer"><Link to="/about">About Us</Link></span>
+          <span className="text-white text-xl font-Arvo cursor-pointer">Careers</span>
+          <span className="text-white text-xl font-Arvo cursor-pointer">Opportunites</span>
         </div>
 
         <h5 className="mt-5 text-center text-md font-Arvo text-white">

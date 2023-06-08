@@ -12,6 +12,7 @@ const RestaurantMenu = () => {
     // console.warn(itemCards);
   //we've to pass the name, id, areaname & logo of restaurant to MealComponent so that they can be added to cart details along with a meal. Hence we create a context and put these into it.
 
+  console.log(name);
   const myData = {
     name: name,
     id: id,
@@ -24,7 +25,7 @@ const RestaurantMenu = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full min-h-screen">
 
         {/* Restaurant details */}
         <div className="w-[60%] mx-auto font-Arvo mt-[20px] flex justify-between items-baseline">
@@ -36,7 +37,7 @@ const RestaurantMenu = () => {
             </h5>
           </div>
           <div className="flex flex-col shadow-md">
-            <span className="star-rating text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-green-800"><i className="fa fa-star"></i> {avgrating}</span>
+            <span className="star-rating text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-green-800"><i className="fa fa-star"></i> {avgrating != "--" ? avgrating: "0.0"}</span>
             {
               totalratings != null && (
                 <span className="review-count text-center border-[1px] border-[#d0d0d0] py-[5px] px-[2px] text-[#8d8d8d] font-[13px]">{totalratings}</span>

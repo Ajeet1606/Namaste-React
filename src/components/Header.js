@@ -57,6 +57,7 @@ const Header = () => {
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/about">About Us</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/contact">Contact Us</Link></li>
           <li className="font-Arvo p-[10px] text-[18px]"><Link to="/cart">Cart ({cartItems.items.length})</Link></li>
+          
         </ul>
         <div className="flex items-center">
           {

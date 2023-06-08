@@ -5,3 +5,11 @@
         }
     ]]
 }
+//no options
+// {
+//     "plugins": [
+//         [
+//             "transform-remove-console"
+//         ]
+//     ]
+// }
