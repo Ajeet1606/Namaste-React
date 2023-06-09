@@ -15,35 +15,31 @@ const Cart = () => {
   // Subscribe to items array of cart slice in the store.
   const cartItems = useSelector((store) => store.cart.cartItems);
 
-
   //path will take you to respective restaurnat menu.
   const path = "/restaurant/" + cartItems.restaurant_id;
-
 
   //--------------------------------------- useEffects --------------------------------------------------
   useEffect(() => {
     let total = 0;
     cartItems.items.forEach((cur) => {
-      if(cur.price != "NaN")
-        total += (cur.price / 100) * cur.quantity;
+      if (cur.price != "NaN") total += (cur.price / 100) * cur.quantity;
     });
     total.toFixed(2);
     setTotalBill(total);
   }, []);
 
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if(user){
+      if (user) {
         setCurrentUser(user);
-      }else{
+      } else {
         setCurrentUser(null);
       }
-    })
+    });
 
     return () => {
       unsubscribe();
-    }
+    };
   }, []);
 
   //--------------------------------------- Cart modifications ------------------------------------------
@@ -89,7 +85,6 @@ const Cart = () => {
 
   //---------------------------------------- Rendering area -----------------------------------------------
 
-
   return (
     <>
       <div className="flex bg-slate-200 px-4 min-h-screen">
@@ -97,7 +92,8 @@ const Cart = () => {
         <div className="w-[70%] m-4 p-4">
           {/* Account */}
           <div className="py-5 px-10 bg-white">
-            <h3 className="text-lg font-bold font-Arvo">-: Account :-</h3>
+            <h3 className="text-lg font-bold font-Arvo">Account</h3>
+
             {currentUser ? (
               <div className="my-1">
                 {/* personal information */}
@@ -127,27 +123,27 @@ const Cart = () => {
                   sign up.
                 </h4>
                 <Link to="/login">
-                <button className="border border-green-700 rounded text-green-700 font-Arvo mx-2 py-1 px-3 text-sm">
-                  Have an account? <br />
-                  <span className="text-md ">LOG IN</span>
-                </button>
+                  <button className="border border-green-700 rounded text-green-700 font-Arvo mx-2 py-1 px-3 text-sm">
+                    Have an account? <br />
+                    <span className="text-md ">LOG IN</span>
+                  </button>
                 </Link>
                 <Link to="/signup">
-                <button className="bg-green-700 rounded text-white font-Arvo mx-2 py-1 px-3 text-sm">
-                  New to Food Studio? <br />
-                  <span className="text-md"> SIGN UP</span>
-                </button>
+                  <button className="bg-green-700 rounded text-white font-Arvo mx-2 py-1 px-3 text-sm">
+                    New to Food Studio? <br />
+                    <span className="text-md"> SIGN UP</span>
+                  </button>
                 </Link>
               </div>
             )}
           </div>
           {/* Delivery Address */}
           <div className="py-5 px-10 bg-white my-4">
-            <h3 className=" font-Arvo text-lg">Delivery Address</h3>
+            <h3 className=" font-Arvo font-bold text-lg">Delivery Address</h3>
           </div>
           {/* payment */}
           <div className="py-5 px-10 bg-white my-4">
-            <h3 className="font-Arvo text-lg">Payment</h3>
+            <h3 className="font-Arvo font-bold text-lg">Payment</h3>
           </div>
         </div>
 
