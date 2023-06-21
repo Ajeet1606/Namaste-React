@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { addItem, clearCart, removeItem } from "../utils/cartSlice";
 import { IMG_CDN_URL } from "./Config";
 import { auth, database } from "../firebase";
 import OrderHistory from "./OrderHistory";
+import PathContext from "../utils/PathContext";
 
 const Cart = () => {
   //------------------------------------------- Initialisation area ---------------------------------------
@@ -18,7 +19,14 @@ const Cart = () => {
   //path will take you to respective restaurnat menu.
   const path = "/restaurant/" + cartItems.restaurant_id;
 
+  const {setCurrentPath} = useContext(PathContext);
+  const {pathname} = useLocation();
+
   //--------------------------------------- useEffects --------------------------------------------------
+  useEffect(()=> {
+    setCurrentPath(pathname);
+  }, [])
+  
   useEffect(() => {
     let total = 0;
     cartItems.items.forEach((cur) => {

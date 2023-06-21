@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import store from "./utils/Store";
 import SearchTextContext from "./utils/SearchTextContext";
 import SignUp from "./components/SignUp";
+import PathContext from "./utils/PathContext";
 
 const About = lazy(() => import("./components/About"));
 // -----------------------------------------  BUILDING FOOD STUDIO     ------------------------------
@@ -22,6 +23,7 @@ const About = lazy(() => import("./components/About"));
 const AppComponent = () => {
   const [searchTxt, setsearchTxt] = useState("");
   const [searchTxtFound, setsearchTxtFound] = useState(false);
+  const [currentPath, setCurrentPath] = useState("home");
 
   return (
     // Provider is used to inform our app about the redux store
@@ -30,10 +32,12 @@ const AppComponent = () => {
       <SearchTextContext.Provider
         value={{ searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound }}
       >
+        <PathContext.Provider value={{currentPath, setCurrentPath}}>
         <Header />
         <Suspense fallback={<div>Loading.......</div>}>
           <Outlet /> {/**dynamic pages will be rendered here */}
         </Suspense>
+        </PathContext.Provider>
       </SearchTextContext.Provider>
       <Footer />
     </Provider>

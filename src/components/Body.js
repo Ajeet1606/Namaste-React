@@ -1,18 +1,25 @@
 import { useState, useEffect, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { filterRestaurants } from "../utils/utils";
 import { GET_RESTAURANT_URL } from "./Config";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
 import SearchTextContext from "../utils/SearchTextContext";
+import PathContext from "../utils/PathContext";
 
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   // const [apiIndex, setApiIndex] = useState(0);
-  const { searchTxt, searchTxtFound } = useContext(SearchTextContext);
+  const { searchTxt, setsearchTxt, searchTxtFound } = useContext(SearchTextContext);
+
+  const {pathname} = useLocation();
+  const {setCurrentPath} = useContext(PathContext);
 
   useEffect(() => {
+    setCurrentPath(pathname);
+    setsearchTxt("");
     getRestaurants();
   }, []);
 

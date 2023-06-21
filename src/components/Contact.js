@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import PathContext from "../utils/PathContext";
 import InputControl from "./InputControl";
 
 const Contact = () => {
+
+  const {setCurrentPath} = useContext(PathContext);
+  const {pathname} = useLocation();
+
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -21,6 +27,10 @@ const Contact = () => {
       })
   }
 
+  useEffect(() => {
+    setCurrentPath(pathname);
+  }, [])
+
   return (
     <>
       <div className="min-h-screen p-10 flex flex-col items-center">
@@ -39,7 +49,7 @@ const Contact = () => {
           value = {data.email}
           onChange = {(event) => setData((prev) => ({
               ...prev, 
-              email: event.target.email,
+              email: event.target.value,
           }))}
         ></InputControl>
 

@@ -1,4 +1,15 @@
+import { useLocation } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import PathContext from "../utils/PathContext";
+
 const About = () => {
+  const {setCurrentPath} = useContext(PathContext);
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    setCurrentPath(pathname);
+  }, [])
+  
   return (
     <>
       <div className="p-20 bg-orange-300 text-2xl font-Arvo">

@@ -34,18 +34,17 @@ const RestaurantCard = ({
                 src="https://www.clipartmax.com/png/small/207-2072371_or-combined-to-be-gigantic-location-icon-in-orange-color.png"
                 alt=""
               />
-              <h5 className="m-1 font-Arvo text-sm text-[#484848]">
-                {area}
-              </h5>
+              <h5 className="m-1 font-Arvo text-sm text-[#484848]">{area}</h5>
             </div>
           </div>
 
-          <div className="w-[25%] text-center bg-green-500 mx-1">
-            <span className="star-rating text-white text-sm font-Arvo">
-              <i className="fa fa-star"></i>{" "}
-              {avgRating != "--" ? avgRating : 4.5}
-            </span>
-          </div>
+          {avgRating != "--" && (
+            <div className="w-[25%] text-center bg-green-500 mx-1">
+              <span className="star-rating text-white text-sm font-Arvo">
+                <i className="fa fa-star"></i> {avgRating}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center">

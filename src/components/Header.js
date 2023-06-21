@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SearchBar from "./SearchBar";
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FOOD_STDUIO_LOGO } from "./Config";
 import { auth } from "../firebase";
+import PathContext from "../utils/PathContext";
 
 
 const Header = () => {
+
+  const {currentPath} = useContext(PathContext);
 
   const [userName, setUserName] = useState(null);
 
@@ -49,7 +52,9 @@ const Header = () => {
         />
       </a>
 
-      <SearchBar/>
+      {
+        currentPath === "/" && <SearchBar/>
+      }
 
       <div className="flex justify-end items-center ">
         <ul className="list-none flex justify-between m-0 p-0">
