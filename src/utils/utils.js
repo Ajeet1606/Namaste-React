@@ -6,7 +6,7 @@ export function filterRestaurants(searchTxt, allRestaurants) {
   if (searchTxt === "") return allRestaurants;
   const filteredData = allRestaurants.filter(
     (restaurant) => {
-      return restaurant?.data?.data?.name?.toLowerCase().includes(searchTxt?.toLowerCase())
+      return restaurant?.info?.name?.toLowerCase().includes(searchTxt?.toLowerCase())
       // restaurant?.data?.data?.area?.toLowerCase().includes(searchTxt?.toLowerCase()) )
     }
   );

@@ -3,7 +3,7 @@ import { useContext } from "react";
 import SearchTextContext from "../utils/SearchTextContext";
 
 function SearchBar() {
-    const {searchTxt, setsearchTxt, searchTxtFound, setsearchTxtFound} = useContext(SearchTextContext);
+    const {searchTxt, setsearchTxt, setsearchTxtFound} = useContext(SearchTextContext);
 
     // built for search when enter is pressed.
   // function handleKeyPress(event) {
@@ -19,7 +19,7 @@ function SearchBar() {
         value={searchTxt}
         onChange={(e) => {
           setsearchTxt(e.target.value);
-          setsearchTxtFound(!searchTxtFound);
+          setsearchTxtFound((prev) => !prev);
         }}
         // onKeyDown={handleKeyPress}
       />

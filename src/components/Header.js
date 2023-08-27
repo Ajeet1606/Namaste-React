@@ -17,12 +17,12 @@ const Header = () => {
   const cartItems = useSelector(store => store.cart.cartItems);
   const path = "/signup";
 
-  console.log("Header rendering");
+  // console.log("Header rendering");
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async(user) => {
-      console.log(user);
+      // console.log(user);
       if(user != null){
-        console.log(user.displayName);
+        // console.log(user.displayName);
         if(!user.displayName){
           await user.reload();
         }

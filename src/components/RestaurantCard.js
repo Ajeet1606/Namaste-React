@@ -5,7 +5,7 @@ const RestaurantCard = ({
   name,
   cloudinaryImageId,
   cuisines,
-  area,
+  areaName,
   id,
   avgRating,
 }) => {
@@ -34,7 +34,7 @@ const RestaurantCard = ({
                 src="https://www.clipartmax.com/png/small/207-2072371_or-combined-to-be-gigantic-location-icon-in-orange-color.png"
                 alt=""
               />
-              <h5 className="m-1 font-Arvo text-sm text-[#484848]">{area}</h5>
+              <h5 className="m-1 font-Arvo text-sm text-[#484848]">{areaName}</h5>
             </div>
           </div>
 
